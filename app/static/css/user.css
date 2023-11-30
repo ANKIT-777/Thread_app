@@ -1,0 +1,306 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+
+.nav{
+    display: grid;
+    grid-template-columns: 1fr max-content 1fr;
+    height: 10vh;
+    position: fixed;
+    width: 100%;
+    backdrop-filter: blur(10px); 
+    background-color: rgba(255, 255, 255, 0.5); 
+    
+}
+
+.nav-left{
+    background-image: url('./threads.svg');
+    background-repeat: no-repeat;
+    background-size: calc(3vh);
+    background-position: left;
+    background-position-x: 25%;
+
+}
+
+.nav-mid{
+    display: flex;
+    
+    width: 60vw;
+    padding: 0 20%;
+    justify-content: center;
+
+}
+
+.mid-icons{
+    width: 120px;
+    background-repeat: no-repeat;
+    height: 100%;
+    background-position: center;
+    
+    background-size: calc(3vh);
+    
+}
+
+.nav-right{
+    background-image: url(./grip-lines-solid.svg);
+    background-repeat: no-repeat;
+    height: 100%;
+    background-position: right;
+    background-position-x: 70%;
+    background-size: calc(3vh);
+}
+
+
+.page{
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    z-index: -2;
+}
+
+.left{
+    display: flex;
+    width: 27.5vw;
+    position: relative;
+    height: 100vh;
+    
+}
+
+.right{
+    display: flex;
+    width: 27.5vw;
+    position: relative;
+    height: 100vh;
+    
+}
+
+
+.main{
+    display: flex;
+    width: 45vw;
+    flex-direction: column;
+
+}
+
+.profilebox{
+    
+    width: 100%;
+    height: 50vh;
+    margin-top: 10vh;
+    
+}
+
+
+.p-left{
+    display: flex;
+    flex-direction: column;
+    max-height: 100%;
+    width: 50%;
+    
+    justify-content: space-evenly;
+}
+
+
+
+.p-top{
+    display: flex;
+    height: 30vh;
+    width: 100%;
+    
+}
+
+
+
+.name{
+    height: 30%;
+    
+}
+
+.bold-name{
+    height: 50%;
+    font-size: 30px;
+    font-weight: bold;
+}
+.username{
+    height: 50%;
+}
+
+.bio{
+    max-height: 50%;
+}
+
+.followers{
+    display: flex;
+    height: 10%;
+    width: 30%;
+    justify-content: space-between;
+    
+    align-items: center;
+}
+.followers img{
+    border-radius: 50%;
+    height: 50%;
+}
+
+
+.p-right{
+    display: flex;
+    align-items: flex-end;
+    height: 100%;
+    width: 50%;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.profile-icon{
+    height: 15vh;
+    width: 15vh;
+    border-radius: 50vw;
+    background-image: url(./Ankit1_1.jpg);
+    background-size: cover;
+    background-position: center;    
+    
+}
+
+.insta-icon{
+    height: 10vh;
+    width: 10vh;
+    background-image: url(./instagram.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 30%;
+
+
+}
+
+.p-bottom{
+    display: flex;
+    height: 10vh;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.edit-profile{
+    width: 100%;
+    border-radius: 10px;
+    height:4.5vh;
+    border: 1px solid gray;
+    background-color: white;
+    font-weight: bold;
+    font-size: 15px ;
+}
+
+.p-feed{
+    display: flex;
+    width: 100%;
+    height: 8vh;
+    
+    border-bottom: 1px solid rgba(128, 128, 128, 0.589);
+}
+
+.feed-bt{
+    display: flex;
+    width: 33%;
+    height: 100%;
+    
+    
+    justify-content: center;
+    align-items: center;
+
+}
+
+.thread{
+    width: 100%;
+    display: flex;
+    position: relative;
+    margin-top: 3vh;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.432) ;
+    
+}
+
+.t-left{
+    height: 100%;
+    width: 60px;
+    
+}
+
+.t-icon{
+    height: 40px;
+    width : 65%;
+    border-radius: 100%;
+    background-image: url(./Ankit1_1.jpg);
+    background-size: cover;
+}
+
+.t-box{
+    width: 90%;
+    max-height: 60vh;
+}
+.t-top  {
+    height: 10%;
+    width: 100%;
+    display: flex;
+    margin-bottom: 10px;
+    justify-content: space-between;
+}
+
+.t-drop{
+    display: flex;
+    width: 10%;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.t-textbox{
+    max-width: 100%;
+    font-weight: lighter;
+    color: rgb(16, 15, 15);
+    width: 80%;
+    font-size: 13px;
+    word-wrap:normal; 
+    margin-bottom: 10px;
+    
+}
+
+.t-textbox img{
+    max-height: 30vh;
+    border-radius: 10px;
+    
+
+}
+
+.t-bottom{
+    height: 10vh;
+    
+}
+.t-buttons{
+    display: flex;
+    height: 5vh;
+   
+    width: 25%;
+    justify-content: space-between;
+}
+
+.t-buttons img{
+    width: 20px;
+}
+
+.t-b-likes{
+    display: flex;
+    height: 5vh;
+    width: 8%;
+    justify-content: space-between;
+}
+
+
+.t-b-likes h4{
+    font-weight: lighter;
+    color: grey;
+}
+

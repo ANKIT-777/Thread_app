@@ -1,0 +1,164 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: sans-serif;
+}
+
+body{
+    background-color: black;
+}
+
+.img-div{
+    background-image: url('../imgs/therad top.webp');
+    background-position: top;
+    background-size: cover;
+    height: 60vh;
+    width: 100%;
+    position: relative;
+    top: -10vh;
+    
+}
+
+form{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 30vh;
+    align-content: space-between;
+    justify-content: space-between;
+}
+
+
+.mid-sec{
+    display: flex;
+    width: 100%;
+    height: 70vh;
+    justify-content: center;
+    top: -30vh;
+    position: relative;
+    align-items: center;
+    flex-direction: column;
+}
+.auth-box{
+    display: flex;
+    position: relative;
+    height: 70vh;
+    width: 35vw;
+    
+    flex-direction: column;
+    align-items: center;
+    
+    
+
+}
+
+
+
+.top-text{
+    display: flex;
+    position: relative;
+    height: 10%;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 15px;
+    font-family: sans-serif;
+}
+
+#input-box {
+    width: 70%;
+    height: 8vh;
+    margin: 10px;
+    border-radius: 10px;
+    padding-left: 5%;
+    color: white;
+    background-color: rgba(76, 76, 76, 0.451);
+    border: none; /* Add this line */
+}
+
+
+#input-box-w{
+    width: 70%;
+    height: 8vh;
+    margin: 10px;
+    border-radius: 10px;
+    cursor:pointer;
+    color: rgb(0, 0, 0);
+    background-color: rgb(255, 255, 255);
+    border: none; /* Add this line */
+    font-size: 15px;
+    text-align: center;
+}
+
+.forg-pass{
+    
+    display: flex;
+    height: 10%;
+    position: relative;
+    margin-top: 10px;
+    color: rgb(111, 111, 111); 
+}
+
+
+.line-div {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 5%;
+    color: rgb(111, 111, 111);
+}
+
+.line-div span {
+    color: rgb(111, 111, 111);
+    padding: 0 10px; /* Adjust padding as needed */
+}
+
+
+
+.bot-box{
+    display: flex;
+    width: 70%;
+    height: 12vh;
+    border-radius: 20px;
+    border: 1px solid rgb(111, 111, 111);
+    cursor: pointer;
+}
+
+.bot-icon{
+    display: flex;
+    width: 30%;
+    
+    background-image: url('../imgs/ig-logo-135.png');
+    background-size: 45%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.bot-text{
+    display: flex;
+    width: 55%;
+    color: white;
+    font-weight: bold;
+    align-items: center;
+}
+
+.bot-arr{
+    width: 15%;
+}
+
+.aut-foot{
+    display: flex;
+    width: 100%;
+    height: 10%;
+    margin: 5vh 0 0 0;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+
+.foot-div{
+    color: rgb(111, 111, 111); 
+    font-size: 12px;
+}

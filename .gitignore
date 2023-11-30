@@ -1,0 +1,55 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Local development settings
+*.env
+
+# Database files
+db.sqlite3
+
+# Static files
+/static/
+
+# Media files
+/media/
+
+# Virtual environment
+venv/
+env/
+
+# Ignore the pipenv virtual environment
+Pipfile
+Pipfile.lock
+
+# Ignore local settings
+local_settings.py
+
+# Ignore IDE files
+.idea/
+.vscode/
+
+# Ignore migration files
+/migrations/
+
+# Ignore generated files
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore coverage reports
+htmlcov/
+.coverage
+
+# Ignore logs
+*.log
+
+# Ignore test database
+db.sqlite3
+
+# Ignore Docker-related files
+Dockerfile
+docker-compose.yml
+.dockerignore
