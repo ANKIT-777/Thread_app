@@ -1,3 +1,5 @@
+
+
 *{
     margin: 0;
     padding: 0;
@@ -18,7 +20,7 @@
 }
 
 .nav-left{
-    background-image: url('./threads.svg');
+    background-image: url('../imgs/threads.svg');
     background-repeat: no-repeat;
     background-size: calc(3vh);
     background-position: left;
@@ -46,7 +48,7 @@
 }
 
 .nav-right{
-    background-image: url(./grip-lines-solid.svg);
+    background-image: url("../imgs/grip-lines-solid.svg");
     background-repeat: no-repeat;
     height: 100%;
     background-position: right;
@@ -159,8 +161,9 @@
 .profile-icon{
     height: 15vh;
     width: 15vh;
+    
     border-radius: 50vw;
-    background-image: url(./Ankit1_1.jpg);
+    background-image: url('../imgs/IMG-20231117-WA0033.webp');
     background-size: cover;
     background-position: center;    
     
@@ -169,7 +172,7 @@
 .insta-icon{
     height: 10vh;
     width: 10vh;
-    background-image: url(./instagram.svg);
+    background-image: url('../imgs/instagram.svg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: 30%;
@@ -233,7 +236,7 @@
     height: 40px;
     width : 65%;
     border-radius: 100%;
-    background-image: url(./Ankit1_1.jpg);
+    background-image: url('../imgs/IMG-20231117-WA0033.webp');
     background-size: cover;
 }
 

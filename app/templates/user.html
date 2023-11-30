@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="{% static 'css/login.css'%}">
+    <link rel="stylesheet" href="{% static 'css/user.css'%}">
 </head>
 
 <body>
@@ -16,11 +16,11 @@
         </div>
 
         <div class="nav-mid">
-            <div class="mid-icons" style="background-image: url(./house-solid.svg);"></div>
-            <div class="mid-icons" style="background-image: url(./magnifying-glass-solid.svg);"></div>
-            <div class="mid-icons" style="background-image: url(./pen-to-square-regular.svg);"></div>
-            <div class="mid-icons" style="background-image: url(./heart-regular.svg);"></div>
-            <div class="mid-icons" style="background-image: url(./user-regular.svg);"></div>
+            <div class="mid-icons" style="background-image: url('{% static 'imgs/house-solid.svg' %}');"></div>
+    <div class="mid-icons" style="background-image: url('{% static 'imgs/magnifying-glass-solid.svg' %}');"></div>
+    <div class="mid-icons" style="background-image: url('{% static 'imgs/pen-to-square-regular.svg' %}');"></div>
+<div class="mid-icons" style="background-image: url('{% static 'imgs/heart-regular.svg' %}');"></div>
+<div class="mid-icons" style="background-image: url('{% static 'imgs/user-regular.svg' %}');"></div>
 
         </div>
 
@@ -52,7 +52,7 @@ Video creator | Engineer
 
 
                         <div class="followers">
-                            <img src="./ig-logo-135.png" alt="">
+                            {% load static %}<img src="{% static "imgs/ig-logo-135.png" %}" alt="">
 
                             <h5>554</h5>
                             <h5>followers</h5>
@@ -66,8 +66,8 @@ Video creator | Engineer
 
 
                     <div class="p-right">
-                        <div class="profile-icon">
-
+                        <div class="profile-icon" >
+                            
                         </div>
                         <div class="insta-icon">
 
@@ -108,7 +108,7 @@ Video creator | Engineer
                         <h4>axshvlogs03</h4>
                         <div class="t-drop">
                             <h5>17w</h5>
-                            <img src="./icons8-ellipsis-50.png" alt="" style="width: 25px;">
+                           {% load static %} <img src="{% static "imgs/icons8-ellipsis-50.png" %}" alt="" style="width: 25px;">
                         </div>
                     </div>
 
@@ -118,10 +118,12 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime, veritatis, ani
 
                     <div class="t-bottom">
                         <div class="t-buttons">
-                            <img src="./heart-regular.svg" alt="">
-                            <img src="./comment-regular.svg" alt="">
-                            <img src="./retweet-solid.svg" alt="">
-                            <img src="./share-from-square-solid.svg" alt="">
+                            <img src="{% static 'imgs/heart-regular.svg' %}" alt="">
+                            <img src="{% static 'imgs/comment-regular.svg' %}" alt="">
+                            <img src="{% static 'imgs/retweet-solid.svg' %}" alt="">
+                            <img src="{% static 'imgs/share-from-square-solid.svg' %}" alt="">
+
+
 
                         </div>
 
@@ -137,6 +139,7 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime, veritatis, ani
             <div class="thread">
                 <div class="t-left">
                     <div class="t-icon">
+                        
 
                     </div>
                 </div>
@@ -145,7 +148,7 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime, veritatis, ani
                         <h4>axshvlogs03</h4>
                         <div class="t-drop">
                             <h5>17w</h5>
-                            <img src="./icons8-ellipsis-50.png" alt="" style="width: 25px;">
+                            <img src="{% static 'imgs/icons8-ellipsis-50.png' %}" alt="" style="width: 25px;">
                         </div>
                     </div>
 
@@ -157,10 +160,11 @@ architecto accusantium nisi excepturi itaque.
 
                     <div class="t-bottom">
                         <div class="t-buttons">
-                            <img src="./heart-regular.svg" alt="">
-                            <img src="./comment-regular.svg" alt="">
-                            <img src="./retweet-solid.svg" alt="">
-                            <img src="./share-from-square-solid.svg" alt="">
+                            <img src="{% static 'imgs/heart-regular.svg' %}" alt="">
+                                <img src="{% static 'imgs/comment-regular.svg' %}" alt="">
+                                <img src="{% static 'imgs/retweet-solid.svg' %}" alt="">
+                                <img src="{% static 'imgs/share-from-square-solid.svg' %}" alt="">
+
 
                         </div>
 
@@ -184,7 +188,8 @@ architecto accusantium nisi excepturi itaque.
                         <h4>axshvlogs03</h4>
                         <div class="t-drop">
                             <h5>17w</h5>
-                            <img src="./icons8-ellipsis-50.png" alt="" style="width: 25px;">
+                            <img src="{% static 'imgs/icons8-ellipsis-50.png' %}" alt="" style="width: 25px;">
+
                         </div>
                     </div>
                     <div class="t-textbox">
@@ -194,10 +199,11 @@ architecto accusantium nisi excepturi itaque.
 
                     <div class="t-bottom">
                         <div class="t-buttons">
-                            <img src="./heart-regular.svg" alt="">
-                            <img src="./comment-regular.svg" alt="">
-                            <img src="./retweet-solid.svg" alt="">
-                            <img src="./share-from-square-solid.svg" alt="">
+                            <img src="{% static 'imgs/heart-regular.svg' %}" alt="">
+                            <img src="{% static 'imgs/comment-regular.svg' %}" alt="">
+                            <img src="{% static 'imgs/retweet-solid.svg' %}" alt="">
+                            <img src="{% static 'imgs/share-from-square-solid.svg' %}" alt="">
+
 
                         </div>
 
