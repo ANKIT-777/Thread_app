@@ -1,61 +1,71 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/style.css'%}">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/style.css'%}" />
     <title>Document</title>
-</head>
+  </head>
 
-<body>
-    <div class="img-div">
-    </div>
+  <body>
+    <div class="img-div"></div>
 
     <div class="mid-sec">
-        <div class="auth-box">
-            <div class="top-text">
-                Log in with your Instagram account
-            </div>
+      <div class="auth-box">
+        <div class="top-text">Log in with your Instagram account</div>
 
-            <form method="post" action="{% url 'login' %}">
-                {% csrf_token %}
-                <input id="input-box" type="email" name="username" placeholder="Username, email, or phone">
-                <input  id="input-box" type="password" name="password" placeholder="Password">
-                <button type="submit" id="input-box-w" disabled> Log in</button>
-            </form>
+        <form method="post" action="{% url 'login' %}">
+          {% csrf_token %}
+          <input
+            id="input-box"
+            type="email"
+            name="username"
+            placeholder="Username, email, or phone"
+          />
+          <input
+            id="input-box"
+            type="password"
+            name="password"
+            placeholder="Password"
+          />
+          <button type="submit" id="input-box-w" disabled>Log in</button>
+        </form>
 
-            
-            <div class="forg-pass">Forgot password?</div>
-
-            <div class="line-div">
-                <span>-----------------------------</span> or  <span>-----------------------------</span>
-            </div>
-            
-
-            <div class="bot-box">
-                <div class="bot-icon">
-                </div>
-                <div class="bot-text">
-                    Continue with Instagram
-                </div>
-                <div class="bot-arr">
-
-                </div>
-            </div>
-
-            <div class="aut-foot">
-                <div class="foot-div">© 2023</div>
-                <div class="foot-div">Threads Terms</div>   
-                <div class="foot-div">Privacy Policy</div>   
-                <div class="foot-div">Cookies Policy</div>      
-                <div class="foot-div">Report a problme</div>   
-            </div>
-
+        <div class="forg-sign">
+          <div class="forg-pass">Forgot password?</div>
+          <div class="forg-pass">
+            <a
+              href="/register/"
+              style="
+                color: inherit; /* Use the color inherited from the parent */
+                text-decoration: none;
+              "
+            >
+              Sign Up !!!
+            </a>
+          </div>
         </div>
 
-    </div>
-</body>
+        <div class="line-div">
+          <span>-----------------------------</span> or
+          <span>-----------------------------</span>
+        </div>
 
+        <div class="bot-box">
+          <div class="bot-icon"></div>
+          <div class="bot-text">Continue with Instagram</div>
+          <div class="bot-arr"></div>
+        </div>
+
+        <div class="aut-foot">
+          <div class="foot-div">© 2023</div>
+          <div class="foot-div">Threads Terms</div>
+          <div class="foot-div">Privacy Policy</div>
+          <div class="foot-div">Cookies Policy</div>
+          <div class="foot-div">Report a problme</div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>

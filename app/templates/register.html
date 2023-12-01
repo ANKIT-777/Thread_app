@@ -1,0 +1,46 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/register.css'%}">
+    <title>Register</title>
+</head>
+
+<body>
+    <div class="img-div">
+    </div>
+
+    <div class="mid-sec">
+        <div class="auth-box">
+            <div class="top-text">
+                Register yourself!!
+            </div>
+
+            <form method="POST" action="{% url 'register' %}">
+                {% csrf_token %}
+                <input id="input-box" type="text" name="first_name" placeholder="firstname">
+                <input id="input-box" type="text" name="last_name" placeholder="lastname">
+                <input id="input-box" type="email" name="username" placeholder="Username, email, or phone">
+                <input  id="input-box" type="password" name="password" placeholder="Password">
+                <button type="submit" id="input-box-w" >Register</button>
+            </form>
+
+            <div class="forg-pass"> <a href="/login/" style="color: inherit; text-decoration: none;"> Already have an account? Login </a></div>
+
+            <div class="aut-foot">
+                <div class="foot-div">© 2023</div>
+                <div class="foot-div">Threads Terms</div>   
+                <div class="foot-div">Privacy Policy</div>   
+                <div class="foot-div">Cookies Policy</div>      
+                <div class="foot-div">Report a problem</div>   
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>
