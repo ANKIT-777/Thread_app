@@ -1,0 +1,44 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/user.css'%}">
+    <title>navbar</title>
+    <script>
+        function myFunction() {
+            document.getElementById("myDropdown").classList.toggle("show");
+          }          
+    </script>
+</head>
+<body>
+    
+<div class="nav">
+    <div class="nav-left">
+        
+    </div>
+
+    <div class="nav-mid">
+        <div id="dropdown-btn" class="mid-icons" style="background-image: url('{% static 'imgs/house-solid.svg' %}');"></div>
+        <div class="mid-icons" style="background-image: url('{% static 'imgs/magnifying-glass-solid.svg' %}');"></div>
+        <div class="mid-icons" style="background-image: url('{% static 'imgs/pen-to-square-regular.svg' %}');"></div>
+        <div class="mid-icons" style="background-image: url('{% static 'imgs/heart-regular.svg' %}');"></div>
+        <div class="mid-icons" style="background-image: url('{% static 'imgs/user-regular.svg' %}');"></div>
+    </div>
+
+    <div class="nav-right" onclick="myFunction()" >
+            
+    </div>
+    <div id="myDropdown" class="dropdown-content">
+        <a href="#">Settings</a>
+        <a href="#">Help and Support</a>
+        <a href="/login/">LogOut</a>
+      </div>
+
+    
+</div>
+
+</body>
+</html>

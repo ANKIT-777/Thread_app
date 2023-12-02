@@ -8,26 +8,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="{% static 'css/user.css'%}">
+    <script>
+        function myFunction1() {
+            document.getElementById("myDropdown2").classList.toggle("show");
+        }
+    
+    </script>
+    
 </head>
 
 <body>
-    <div class="nav">
-        <div class="nav-left">
-        </div>
-
-        <div class="nav-mid">
-            <div class="mid-icons" style="background-image: url('{% static 'imgs/house-solid.svg' %}');"></div>
-    <div class="mid-icons" style="background-image: url('{% static 'imgs/magnifying-glass-solid.svg' %}');"></div>
-    <div class="mid-icons" style="background-image: url('{% static 'imgs/pen-to-square-regular.svg' %}');"></div>
-<div class="mid-icons" style="background-image: url('{% static 'imgs/heart-regular.svg' %}');"></div>
-<div class="mid-icons" style="background-image: url('{% static 'imgs/user-regular.svg' %}');"></div>
-
-        </div>
-
-        <div class="nav-right">
-
-        </div>
-    </div>
+    {% include 'navbar.html' %}
 
     <div class="page">
 
@@ -38,8 +29,8 @@
                 <div class="p-top">
                     <div class="p-left">
                         <div class="name">
-                            <div class="bold-name"> Ankit Sharma</div>
-                            <div class="username">axshvlogs03</div>
+                            <div class="bold-name">{{ user.get_full_name }}</div>
+                            <div class="username">{{ user.username }}</div>
                         </div>
 
                         <div class="bio">
@@ -77,10 +68,18 @@ Video creator | Engineer
                 </div>
 
                 <div class="p-bottom">
-                    <button class="edit-profile">
+                    <button class="edit-profile" onclick="myFunction1()">
                         Edit profile
                     </button>
+                
+                    <div id="myDropdown2" class="dropdown-content">
+                        <a href="#">Settings</a>
+                        <a href="#">Help and Support</a>
+                        <a href="/login/">LogOut</a>
+                    </div>
+                
                 </div>
+                
 
                 <div class="p-feed">
                     <div class="feed-bt">
@@ -193,7 +192,7 @@ architecto accusantium nisi excepturi itaque.
                         </div>
                     </div>
                     <div class="t-textbox">
-                        <img src="./Ankit1_1.jpg" alt="">
+                        <img src="{% static "imgs/Ankit1.jpg"%}" alt="">
                     </div>
                     
 

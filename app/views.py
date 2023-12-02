@@ -12,6 +12,12 @@ def register(request):
         username = request.POST['username']
         password = request.POST['password']
         
+        user = User.objects.filter(username = username)
+        if user.exists():
+            messages.info(request,'*Username exist choose another username')
+            return redirect('/register/')
+        
+        
         user = User.objects.create(
             first_name=first_name,
             last_name=last_name,
@@ -19,10 +25,12 @@ def register(request):
         )
         user.set_password(password)
         user.save()
-        return redirect('/user-profile/')
+        return redirect('/login/')
     return render(request,'register.html')
 
 def login_view(request):
+    # if request.user.is_authenticated:
+    #     return redirect('user_profile')
     form = LoginForm(request.POST or None)
 
     if request.method == 'POST' and form.is_valid():
@@ -45,6 +53,17 @@ def login_view(request):
 
 
 def user_profile(request):
-    
-    return render(request, 'user.html')
+    if request.user.is_authenticated:
+        user = request.user
+        context = {
+            'user': user,
+        }
+        return render(request, 'user.html', context)
+    else:
+        return render(request,'login.html')
 
+ 
+ 
+ 
+def home_page(request):
+    return render(request,'home.html')
