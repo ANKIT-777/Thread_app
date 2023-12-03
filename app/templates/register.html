@@ -22,20 +22,10 @@
 
             <form method="POST" action="{% url 'register' %}">
                 {% csrf_token %}
-                {% if messages %}
-<ul class="messages">
-    
-    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}></li>
-    
-</ul>
-{% endif %}
 
                 <input id="input-box" type="text" name="first_name" placeholder="firstname">
                 <input id="input-box" type="text" name="last_name" placeholder="lastname">
                 <input id="input-box" type="email" name="username" placeholder="Username, email, or phone">
-                {% for message in messages %}
-                <h6 style= "color: red;">{{ message }}</h6>
-                {% endfor %}
                 <input  id="input-box" type="password" name="password" placeholder="Password">
                 <button type="submit" id="input-box-w" >Register</button>
             </form>

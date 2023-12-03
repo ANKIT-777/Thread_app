@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="{% static 'css/style.css'%}" />
     <title>Log in</title>
+    
   </head>
 
   <body>
@@ -13,6 +14,7 @@
 
     <div class="mid-sec">
       <div class="auth-box">
+        
         <div class="top-text">Log in with your Instagram account</div>
 
         <form method="post" action="{% url 'login' %}">
@@ -23,12 +25,24 @@
             name="username"
             placeholder="Username, email, or phone"
           />
-          <input
-            id="input-box"
-            type="password"
-            name="password"
-            placeholder="Password"
-          />
+          {% if messages %}
+            <ul class="messages">
+                
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}></li>
+                {% for message in messages %}
+                <h6 style= "color: red; position : absolute">{{ message }}</h6>
+                {% endfor %}
+            </ul>
+          {% endif %}
+
+          
+          <input id="input-box" 
+          type="password" 
+          name="password" 
+          placeholder="Password" 
+          required />
+
+          
           <button type="submit" id="input-box-w">Log in</button>
         </form>
 

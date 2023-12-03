@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login,logout
 from django.contrib import messages
 from .forms import *
 from django.contrib.auth.models import User
@@ -29,8 +29,8 @@ def register(request):
     return render(request,'register.html')
 
 def login_view(request):
-    # if request.user.is_authenticated:
-    #     return redirect('user_profile')
+    if request.user.is_authenticated:
+        return redirect('user_profile')
     form = LoginForm(request.POST or None)
 
     if request.method == 'POST' and form.is_valid():
@@ -45,10 +45,16 @@ def login_view(request):
             return redirect('user_profile')
         else:
             messages.error(request, 'Invalid login credentials. Please try again.')
+            return redirect('login')
 
     return render(request, 'login.html', {'form': form})
 
 
+
+def logout_view(request):
+    logout(request)
+    messages.success(request, 'Successfully logged out.')
+    return redirect('login')
 
 
 

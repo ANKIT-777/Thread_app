@@ -12,40 +12,15 @@
             const overlay = document.getElementById('overlay');
             overlay.style.display = overlay.style.display === 'none' ? 'flex' : 'none';
         }
+        function myFunction() {
+          document.getElementById("myDropdown").classList.toggle("show");
+        }          
     </script>
   </head>
   <body>
 
-    <div class="nav">
-        <div class="nav-left">
-            
-        </div>
-    
-        <div class="nav-mid">
-            <div id="dropdown-btn" class="mid-icons" style="background-image: url('{% static 'imgs/house-solid.svg' %}');"
-            <a href="/home_page/">
-            </a></div>
-            <div class="mid-icons" style="background-image: url('{% static 'imgs/magnifying-glass-solid.svg' %}');"></div>
-            <div class="mid-icons" style="background-image: url('{% static 'imgs/pen-to-square-regular.svg' %}');"></div>
-            <div class="mid-icons" style="background-image: url('{% static 'imgs/heart-regular.svg' %}');"></div>
-            <div class="mid-icons" style="background-image: url('{% static 'imgs/user-regular.svg' %}');">
-              <a href="/user-profile/">
-              </a>
-            </div>
-        </div>
-    
-        <div class="nav-right" onclick="myFunction()" >
-                
-        </div>
-        <div id="myDropdown" class="dropdown-content">
-            <a href="#">Settings</a>
-            <a href="#">Help and Support</a>
-            <a href="/login/">LogOut</a>
-          </div>
-    
-        
-    </div>
 
+    {% include 'navbar.html' %}
     <div class="page">
 
         <div class="left"></div>
@@ -75,8 +50,9 @@
                     <textarea placeholder="Start a thread ..."></textarea>
 
                     <div class="pt-icons">
-                      <img src="./images-solid.svg" alt="" />
-                      <img src="./video-solid.svg" alt="" />
+                      <button class="icon-button"><img src="{% static 'imgs/images-solid.svg' %}" alt="" /></button>
+                      
+                      <button class="icon-button"><img src="{% static 'imgs/video-solid.svg' %}" alt="" /></button>
                     </div>
                   </div>
 
@@ -88,6 +64,7 @@
             </div>
           </div>
         </div>
+        {% include 'thread.html' %}
         
         <div class="thread">
           <div class="t-left">

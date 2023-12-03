@@ -17,15 +17,26 @@
     
 <div class="nav">
     <div class="nav-left">
-        
+        <a href="{% url 'home_page' %}"><img src='{% static 'imgs/threads.svg' %}' alt="" /></a>
     </div>
 
     <div class="nav-mid">
-        <div id="dropdown-btn" class="mid-icons" style="background-image: url('{% static 'imgs/house-solid.svg' %}');"></div>
-        <div class="mid-icons" style="background-image: url('{% static 'imgs/magnifying-glass-solid.svg' %}');"></div>
-        <div class="mid-icons" style="background-image: url('{% static 'imgs/pen-to-square-regular.svg' %}');"></div>
-        <div class="mid-icons" style="background-image: url('{% static 'imgs/heart-regular.svg' %}');"></div>
-        <div class="mid-icons" style="background-image: url('{% static 'imgs/user-regular.svg' %}');"></div>
+        <div id="dropdown-btn" class="mid-icons">
+            <a href="/home_page/"><img src='{% static 'imgs/house-solid.svg' %}' alt="" /></a>
+        </div>
+        <div class="mid-icons">
+            <img src='{% static 'imgs/magnifying-glass-solid.svg' %}' alt="" />
+        </div>
+        <div class="mid-icons">
+            <img src='{% static 'imgs/pen-to-square-regular.svg' %}' alt="" />
+        </div>
+        <div class="mid-icons">
+            <img src='{% static 'imgs/heart-regular.svg' %}' alt="" />
+        </div>
+        <div class="mid-icons" >
+            <a href="/user-profile/"><img src='{% static 'imgs/user-regular.svg' %}' alt="" /></a>
+
+          </div>
     </div>
 
     <div class="nav-right" onclick="myFunction()" >
@@ -34,7 +45,7 @@
     <div id="myDropdown" class="dropdown-content">
         <a href="#">Settings</a>
         <a href="#">Help and Support</a>
-        <a href="/login/">LogOut</a>
+        <a href="{% url 'logout_view' %}">LogOut</a>
       </div>
 
     
