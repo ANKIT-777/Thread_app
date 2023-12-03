@@ -5,6 +5,8 @@ from .forms import *
 from django.contrib.auth.models import User
 
 
+
+
 def register(request):
     if request.method == 'POST':
         first_name = request.POST['first_name']
@@ -45,7 +47,7 @@ def login_view(request):
             return redirect('user_profile')
         else:
             messages.error(request, 'Invalid login credentials. Please try again.')
-            return redirect('login')
+            return redirect('/login/')
 
     return render(request, 'login.html', {'form': form})
 
@@ -54,7 +56,7 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     messages.success(request, 'Successfully logged out.')
-    return redirect('login')
+    return redirect('/login/')
 
 
 
@@ -73,3 +75,17 @@ def user_profile(request):
  
 def home_page(request):
     return render(request,'home.html')
+
+
+def create_post(request):
+    if request.method == 'POST':
+        form = PostForm(request.POST, request.FILES)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.user = request.user
+            post.save()
+            return redirect('home_page')  # Replace 'home' with the URL you want to redirect after posting
+    else:
+        form = PostForm()
+
+    return render(request, 'home.html', {'form': form})

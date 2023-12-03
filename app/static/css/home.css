@@ -169,7 +169,6 @@
     display: flex;
     flex-direction: column;
     
-    
     justify-content: space-between;
 }
 
@@ -177,7 +176,7 @@
     background-color: white;
     border: none;
     margin-top: 5px;
-    min-height: 2vh;
+    min-height: 4vh;
     resize: vertical; 
     width: 100%; 
     margin-bottom: 10px;
@@ -185,12 +184,15 @@
 
 
 .pt-icons{
-    height: 30%;
+    height: 40%;
     align-items: center;
 }
 
-icon-button{
+.icon-button{
     border: none;
+    display: flex;
+    height: 20px;
+    align-items: center;
     background-color: white;
 }
 
@@ -198,11 +200,14 @@ icon-button{
     height: 15px;
     margin: 0 2px;
 }
+.pt-icons input{
+    height: 15px;
+    margin: 0 2px;
+    width: 50%;
+}
 
 .pt-bot{
     width: 100%;
-    height: 5vh;
-    
     display: flex;
     align-items: flex-end;
     justify-content: flex-end;
