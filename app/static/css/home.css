@@ -6,12 +6,13 @@
 }
 
 
+
+
 .page{
     display: flex;
     width: 100%;
     height: 100vh;
-    position: relative;
-    
+    position: relative;    
     
 }
 
@@ -43,14 +44,21 @@
 
 
 .create-post{
-    height: 10vh;
+    height: 12vh;
     width: 100%;
+    padding: 15px;
+    box-sizing: border-box;
     border-bottom: 1px solid rgb(167, 167, 167);
     display: flex;
     align-items: center;
-    margin-top: 10vh;
+    margin-top: 12vh;
     z-index: 1000;
     position: relative;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0px 10px 24px 3px rgba(218, 218, 218, 0.42);
+
+
     
 }
 
@@ -235,9 +243,14 @@
     position: relative;
     margin-top: 3vh;
     border-bottom: 1px solid rgba(128, 128, 128, 0.432) ;
-    padding: 5vh 0 5vh 2vw;
-    
+    padding: 5vh 2vh 5vh 2vw;
+    border-radius: 20px;
+    border: 1px solid rgb(177, 177, 177);
+    box-shadow: 0px 20px 24px 3px rgba(177, 177, 177, 0.42);
+
 }
+
+
 
 .t-left{
     height: 100%;
@@ -293,9 +306,8 @@
 }
 
 .t-textbox img{
-    max-height: 30vh;
+    
     border-radius: 10px;
-    max-width: 100%;
     margin: 20px 0;
     display: flex;
     align-self: flex-start;
@@ -321,11 +333,12 @@
     height: 10%;
     
 }
+
 .t-buttons{
     display: flex;
     height: 5vh;
    align-items: center;
-    width: 8vw;
+    width: 10vw;
     justify-content: space-between;
 }
 
@@ -336,7 +349,9 @@
 .t-b-likes{
     display: flex;
     height: 5vh;
-    width: 8%;
+    width:  10%;
+    padding-left: 15px;
+    
     justify-content: space-between;
 }
 
@@ -347,7 +362,7 @@
 }
 
 .Post-Comment-Form{
-    margin-top: 5vh;
+    margin-top: 3vh;
 }
 .Post-Comment{
     
@@ -399,7 +414,7 @@
     
     min-height: 6vh;
     padding-left: 50px;
-    width: 100%;
+    width: 90%;
     
 }
 .com-bot form{
