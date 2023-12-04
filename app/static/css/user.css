@@ -280,10 +280,13 @@
 
 .t-icon{
     height: 40px;
-    width : 65%;
+    width : 65px;
+}
+
+.t-icon img{
+    height: 40px;
+    width : 65px;
     border-radius: 100%;
-    background-image: url('../imgs/IMG-20231117-WA0033.webp');
-    background-size: cover;
 }
 
 .t-box{
@@ -352,7 +355,7 @@
 .t-buttons{
     display: flex;
     height: 5vh;
-   
+   align-items: center;
     width: 8vw;
     justify-content: space-between;
 }
@@ -373,3 +376,4 @@
     font-weight: lighter;
     color: grey;
 }
+

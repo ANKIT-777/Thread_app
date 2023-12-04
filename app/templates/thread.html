@@ -1,55 +1,104 @@
 {% load static %}
+{% load humanize %}
+
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="{% static 'css/user.css'%}" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>thread</title>
-    <script>
-      function myFunction() {
-        document.getElementById("myDropdown").classList.toggle("show");
-      }
-    </script>
-  </head>
-  <body>
-    <div class="thread">
-      <div class="t-left">
-        <div class="t-icon"></div>
-      </div>
-      <div class="t-box">
-        <div class="t-top">
-          <h4>@GiorgiaMeloni</h4>
-          <div class="t-drop">
-            <h5>17w</h5>
-            <img
-              src="{% static 'imgs/icons8-ellipsis-50.png' %}"
-              alt=""
-              style="width: 25px"
-            />
-          </div>
-        </div>
-        <div class="t-textbox">
-          <p>Good friends at COP28. #melodi</p>
+    <link rel="stylesheet" href="{% static 'css/home.css'%}" />
+    <script>             
+      function toggleComment() {
+        const overlay = document.getElementById("PostComment");
+        overlay.style.display =
+          overlay.style.display === "flex" ? "none" : "flex" ;
+      }       
+  </script>
+</head>
+<body>
 
-          <img src="{% static "imgs/GAR7OQCXsAAO8ex.jpeg"%}" alt="">
-        </div>
-
-        <div class="t-bottom">
-          <div class="t-buttons">
-            <img src="{% static 'imgs/heart-regular.svg' %}" alt="" />
-            <img src="{% static 'imgs/comment-regular.svg' %}" alt="" />
-            <img src="{% static 'imgs/retweet-solid.svg' %}" alt="" />
-            <img src="{% static 'imgs/share-from-square-solid.svg' %}" alt="" />
-          </div>
-
-          <div class="t-b-likes">
-            <h4>5</h4>
-            <h4>likes</h4>
-          </div>
-        </div>
+  <div class="thread">
+    <div class="t-left">
+      <div class="t-icon">
+        <img src="" alt="">
       </div>
     </div>
-  </body>
+    <div class="t-box">
+      <div class="t-top">
+        <h4>{{ post.user.username }}</h4>
+        <div class="t-drop">
+          <h5>{{ post.created_at|naturaltime }}</h5>
+
+          <img src="{% static 'imgs/icons8-ellipsis-50.png' %}" alt="" style="width: 25px;" />
+        </div>
+      </div>
+      <div class="t-textbox">
+        <p>{{ post.content }}</p>
+        {% if post.image %}
+        <img src="{{ post.image.url }}" alt="">
+        {% endif %}
+        {% if post.video %}
+          <video width="320" height="240" controls>
+            <source src="{{ post.video.url }}" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        {% endif %}
+      </div>
+  
+      <div class="t-bottom">
+        <div class="t-buttons">
+
+          <a href="{% url 'like_post' post.id %}">
+            <img src="{% static 'imgs/heart-regular.svg' %}" alt="">
+          </a>
+
+          
+          <a href="{% url 'thread' post.id %}">
+            <img onclick="toggleComment()" src="{% static 'imgs/comment-regular.svg' %}" alt="">
+          </a>
+
+          <img src="{% static 'imgs/retweet-solid.svg' %}" alt="">
+          <img src="{% static 'imgs/share-from-square-solid.svg' %}" alt="">
+        </div>
+  
+        <div class="t-b-likes">
+          <h4>{{ post.likes_count }}</h4>
+          <h4>likes</h4>
+        </div>
+    
+
+        <div class="Post-Comments">
+          {% for comment in comments %}
+              {% include 'comments.html' with comment=comment %}
+          {% endfor %}
+      
+          <div class="Post-Comment-Form">
+              <div class="com-top">
+                  <img src="{% static '' %}" alt="">
+                  <h5>{{ user.username }}</h5>
+              </div>
+            
+              <div class="com-bot">
+                  <form method="post" action="{% url 'create_comment' post.id %}">
+                      {% csrf_token %}
+                      <textarea name="content" placeholder="Add a comment..."></textarea>
+                      <button type="submit">Comment</button>
+                  </form>
+              </div>
+          </div>
+      </div>
+      
+
+
+        
+        
+
+
+      </div>
+    </div>
+  </div>  
+    
+</body>
 </html>

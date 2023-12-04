@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/comm.css'%}" />
+    <title>navbar</title>
+    <script>
+        function togglePopup() {
+            const overlay = document.getElementById('overlay');
+            overlay.style.display = overlay.style.display === 'none' ? 'flex' : 'none';
+        }
+    </script>
+
+</head>
+
+<body>
+
+<div id="PostComment" class="Post-Comment">
+    <div class="com-top">
+        <img src="{% static 'path/to/avatar.jpg' %}" alt="">
+        <h5>{{ user.username }}</h5>
+    </div>
+    
+    <div class="com-blw">
+        <form method="post" action="{% url 'create_comment' post.id %}">
+            <p>{{ comment.content }}</p>
+            <button type="submit">Reply</button>
+        </form>
+    </div>
+</div>
+
+</body>
+
+</html>

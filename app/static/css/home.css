@@ -135,7 +135,6 @@
 }
 .pt-rig{
     display: flex;
-    width: 88%;
     padding-left: 10px;
 
     flex-direction: column;
@@ -217,25 +216,26 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 90px;
-    height: 40px;
+    width: 70px;
+    height: 30px;
     border: none;
     background-color: rgb(76, 76, 76);
     border-radius: 50px;
     color: white;
     font-weight: bold;
-    font-size: 15px;
-
+    font-size: 13px;
 }
 
 
 
 .thread{
-    width: 100%;
+    width: 45vw;
+    align-self: center;
     display: flex;
     position: relative;
     margin-top: 3vh;
     border-bottom: 1px solid rgba(128, 128, 128, 0.432) ;
+    padding: 5vh 0 5vh 2vw;
     
 }
 
@@ -247,10 +247,15 @@
 
 .t-icon{
     height: 40px;
-    width : 65%;
+    width : 65px;
+    
+    
+}
+
+.t-icon img{
+    height: 40px;
+    width : 40px;
     border-radius: 100%;
-    background-image: url('../imgs/IMG-20231117-WA0033.webp');
-    background-size: cover;
 }
 
 .t-box{
@@ -267,7 +272,7 @@
 
 .t-drop{
     display: flex;
-    width: 10%;
+    width: 25%;
     justify-content: space-between;
     align-items: center;
 }
@@ -297,12 +302,12 @@
 
 }
 
-.t-textbox iframe{
+.t-textbox video{
     max-height: 30vh;
-    border-radius: 10px;
     max-width: 100%;
     margin: 20px 0;
     display: flex;
+    border-radius: 20px;
     align-self: flex-start;
 
 }
@@ -319,7 +324,7 @@
 .t-buttons{
     display: flex;
     height: 5vh;
-   
+   align-items: center;
     width: 8vw;
     justify-content: space-between;
 }
@@ -339,4 +344,85 @@
 .t-b-likes h4{
     font-weight: lighter;
     color: grey;
+}
+
+.Post-Comment-Form{
+    margin-top: 5vh;
+}
+.Post-Comment{
+    
+    width: 100%;
+    display: flex;
+    text-align: left;
+    margin-top: 3vh;
+    z-index: 1000;
+    position: relative;
+    flex-direction: column;
+    
+}
+
+.Post-Comment textarea{
+    border: none;
+    width: 70%;
+    min-height: 5vh;
+    padding-top: 10px;
+    max-width: 30vw;
+    
+}
+
+.Post-Comment h4{
+    font-weight: lighter;
+
+}
+
+.Post-Comment button{
+    border-radius: 20px;
+    background-color: #8d8d8d;
+    border: none;
+    width: 80px;
+    height: 35px;
+    color: white;
+
+    text-align: center;
+}
+.com-top{
+    display: flex;
+    height: 20%;
+}
+.com-top img{
+    width: 30px;
+    height: 30px;
+    margin: 0 10px;
+    border-radius: 30px;
+}
+.com-bot{
+    
+    min-height: 6vh;
+    padding-left: 50px;
+    width: 100%;
+    
+}
+.com-bot form{
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    width: 100%;
+}
+
+
+.com-bot textarea {
+    width: 70%;
+    border: none;
+    
+}
+
+.com-bot button {
+    border-radius: 20px;
+    background-color: #8d8d8d;
+    border: none;
+    width: 80px;
+    height: 35px;
+    color: white;
+    text-align: center;
+
 }

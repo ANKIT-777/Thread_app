@@ -6,205 +6,108 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" />
     <title>navbar</title>
-    <link rel="stylesheet" href="{% static 'css/home.css'%}">
+    <link rel="stylesheet" href="{% static 'css/home.css'%}" />
     <script>
-        function togglePopup() {
-            const overlay = document.getElementById('overlay');
-            overlay.style.display = overlay.style.display === 'none' ? 'flex' : 'none';
-        }
-        function myFunction() {
-          document.getElementById("myDropdown").classList.toggle("show");
-        }          
+      function togglePopup() {
+        const overlay = document.getElementById("overlay");
+        overlay.style.display =
+          overlay.style.display === "none" ? "flex" : "none";
+      }
+      function myFunction() {
+        document.getElementById("myDropdown").classList.toggle("show");
+      }
     </script>
   </head>
   <body>
-
-
     {% include 'navbar.html' %}
     <div class="page">
-
-        <div class="left"></div>
-        <div class="main">
-    
+      <div class="left"></div>
+      <div class="main">
+        
+        
+        
         <div class="create-post">
           <div class="user-img">
             <img src="{% static 'imgs/Ankit1.jpg' %}" alt="" />
           </div>
           <button class="text-button" onclick="togglePopup()">
-            Start a Thread...
+            Start a thread ....
           </button>
+            
+          
           <button class="post">Post</button>
 
-          
-<div class="overlay" id="overlay">
-  <form method="post" action="{% url 'create_post' %}" enctype="multipart/form-data">
-      {% csrf_token %}
-      <div class="popup">
-      
-          <div class="pop-top">
-        
-          </div>
-          <div class="pt-rig">
-        
-              <div class="pt-content">
-                  <textarea name="content" placeholder="Start a thread ..."></textarea>
+          <div class="overlay" id="overlay">
+            <form
+              method="post"
+              action="{% url 'create_post' %}"
+              enctype="multipart/form-data"
+            >
+              {% csrf_token %}
+              <div class="popup">
+                <div class="pop-top">
 
-                  <div class="pt-icons">
+                </div>
+                <div class="pt-rig">
+                    <div class="pt-1">
+                        <div class="h5">{{ user.username }}</div>
+                        <button class="close" onclick="togglePopup()">Close</button>
+                    </div>
+                  <div class="pt-content">
+                    <textarea
+                      name="content"
+                      placeholder="Start a thread ..."
+                    ></textarea>
+
+                    <div class="pt-icons">
                       <label for="id_image" class="icon-button">
-                          <img src="{% static 'imgs/images-solid.svg' %}" alt="" />
-                          <input type="file" name="image" id="id_image" accept="image/*">
+                        <img
+                          src="{% static 'imgs/images-solid.svg' %}"
+                          alt=""
+                        />
+                        <input
+                          type="file"
+                          name="image"
+                          id="id_image"
+                          accept="image/*"
+                        />
                       </label>
                       <label for="id_video" class="icon-button">
                         <img src="{% static 'imgs/video-solid.svg' %}" alt="" />
-                          <input type="file" name="video" id="id_video" accept="video/*" placeholder='choose video file'>
-                      </label>̀
-                  </div>
-              </div>
-
-              <div class="pt-bot">
-                  <button type="submit" class="pt-button">Post</button>
-              </div>
-          </div>
-      </div>̀
-  </form>
-</div>
-
-        </div>
-        {% include 'thread.html' %}
-        
-        <div class="thread">
-          <div class="t-left">
-              <div class="t-icon">
-
-              </div>
-          </div>
-          <div class="t-box">
-              <div class="t-top">
-                  <h4>axshvlogs03</h4>
-                  <div class="t-drop">
-                      <h5>17w</h5>
-                      <img src="{% static 'imgs/icons8-ellipsis-50.png' %}" alt="" style="width: 25px;">
-
-                  </div>
-              </div>
-              <div class="t-textbox">
-                  <img src="{% static "imgs/Ankit1.jpg"%}" alt="">
-              </div>
-              
-
-              <div class="t-bottom">
-                  <div class="t-buttons">
-                      <img src="{% static 'imgs/heart-regular.svg' %}" alt="">
-                      <img src="{% static 'imgs/comment-regular.svg' %}" alt="">
-                      <img src="{% static 'imgs/retweet-solid.svg' %}" alt="">
-                      <img src="{% static 'imgs/share-from-square-solid.svg' %}" alt="">
-
-
-                  </div>
-
-                  <div class="t-b-likes"><h4> 5 </h4> <h4>likes</h4></div>
+                        <input
+                          type="file"
+                          name="video"
+                          id="id_video"
+                          accept="video/*"
+                          placeholder="choose video file"
+                      
+                       </label>
                   
+                    </div>
+                  </div>
 
+                  <div class="pt-bot">
+                    <button type="submit" class="pt-button">Post</button>
+                  </div>
+                </div>
               </div>
-
+            </form>
           </div>
-
-
-      </div>
-      <div class="thread">
-        <div class="t-left">
-            <div class="t-icon">
-
-            </div>
-        </div>
-        <div class="t-box">
-            <div class="t-top">
-                <h4>@GiorgiaMeloni
-                </h4>
-                <div class="t-drop">
-                    <h5>17w</h5>
-                    <img src="{% static 'imgs/icons8-ellipsis-50.png' %}" alt="" style="width: 25px;">
-
-                </div>
-            </div>
-            <div class="t-textbox">
-              <p>Good friends at COP28.
-#melodi
-              </p>
-                
-                <img src="{% static "imgs/GAR7OQCXsAAO8ex.jpeg"%}" alt="">
-            </div>
-            
-
-            <div class="t-bottom">
-                <div class="t-buttons">
-                    <img src="{% static 'imgs/heart-regular.svg' %}" alt="">
-                    <img src="{% static 'imgs/comment-regular.svg' %}" alt="">
-                    <img src="{% static 'imgs/retweet-solid.svg' %}" alt="">
-                    <img src="{% static 'imgs/share-from-square-solid.svg' %}" alt="">
-
-
-                </div>
-
-                <div class="t-b-likes"><h4> 5 </h4> <h4>likes</h4></div>
-                
-
-            </div>
-
         </div>
 
+        
 
-    </div>
+        {% for post in posts %}
+            <a href="{% url 'thread' post.id %}">
+              {% include 'thread.html' with post=post %}
+          </a>
+        {% endfor %}
+        
 
-    <div class="thread">
-      <div class="t-left">
-          <div class="t-icon">
-
-          </div>
-      </div>
-      <div class="t-box">
-          <div class="t-top">
-              <h4>shivap123</h4>
-              <div class="t-drop">
-                  <h5>17w</h5>
-                  <img src="{% static 'imgs/icons8-ellipsis-50.png' %}" alt="" style="width: 25px;">
-
-              </div>
-          </div>
-          <div class="t-textbox">
-            <p>Saw #SamBahadur yesterday at a special screening. 
-Vicky Kaushal is outstanding. There are scenes 
-where you feel that the Filed Marshal is standing in 
-front of you…the swagger, the aura…everything is top notch.
-Meghna Gulzar does an exceptional job of directing this special film. 
-The Sam Bahadur team got the fauji vibe just right, which is extremely difficult. 
-            </p>
-              <img src="{% static "imgs/GAHDs_GbsAILBZt.jpeg"%}" alt="">
-          </div>
-          
-
-          <div class="t-bottom">
-              <div class="t-buttons">
-                  <img src="{% static 'imgs/heart-regular.svg' %}" alt="">
-                  <img src="{% static 'imgs/comment-regular.svg' %}" alt="">
-                  <img src="{% static 'imgs/retweet-solid.svg' %}" alt="">
-                  <img src="{% static 'imgs/share-from-square-solid.svg' %}" alt="">
-
-
-              </div>
-
-              <div class="t-b-likes"><h4> 5 </h4> <h4>likes</h4></div>
-              
-
-          </div>
 
       </div>
 
-  </div>
+      <div class="right"></div>
     </div>
-
-        <div class="right"></div>
-    </div>
-
   </body>
 </html>
