@@ -174,15 +174,9 @@
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
-    width: 90%;
+    width: 80%;
 }
 
-
-.com-blw textarea {
-    width: 70%;
-    border: none;
-    
-}
 
 .com-blw button {
     border-radius: 20px;
