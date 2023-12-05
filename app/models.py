@@ -1,6 +1,6 @@
 # models.py
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User,AbstractUser
 
 class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -17,3 +17,12 @@ class Post(models.Model):
     likes_count = models.PositiveIntegerField(default=0)
     liked_by = models.ManyToManyField(User, related_name='liked_posts', blank=True)
     comments = models.ManyToManyField(Comment, related_name='comment_posts', blank=True)
+
+class UserProfile(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    profile_image = models.ImageField(upload_to='profile_images/', null=True, blank=True)
+    bio = models.TextField(blank=True)
+    instagram_url = models.URLField(blank=True)
+
+    def __str__(self):
+        return self.user.username

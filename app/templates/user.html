@@ -12,6 +12,9 @@
         function myFunction1() {
             document.getElementById("myDropdown2").classList.toggle("show");
         }
+        function ediProfile() {
+            document.getElementById("editprofile").classList.toggle("show");
+        }
     
     </script>
     
@@ -68,16 +71,20 @@ Video creator | Engineer
                 </div>
 
                 <div class="p-bottom">
-                    <button class="edit-profile" onclick="myFunction1()">
+                    <button class="edit-profile" onclick="ediProfile()">
                         Edit profile
                     </button>
                 
-                    <div id="myDropdown2" class="dropdown-content">
-                        <a href="#">Settings</a>
-                        <a href="#">Help and Support</a>
-                        <a href="/login/">LogOut</a>
+                    {% comment %} <div id="editprofile" class="">
+    
+                            <form method="post" action="/edit_profile/" enctype="multipart/form-data">
+                                {% csrf_token %}                    
+                               
+                            </form>
+                            
+                          
                     </div>
-                
+                 {% endcomment %}
                 </div>
                 
 
@@ -95,6 +102,16 @@ Video creator | Engineer
                     Reposts
                 </div>
             </div>
+
+            
+
+            {% for post in posts %}
+            {% if post.user.username == user.username %}
+                <a href="{% url 'thread' post.id %}">
+                {% include 'thread.html' with post=post %}
+            </a>
+            {% endif %}
+        {% endfor %}
 
         </div>
         <div class="right"></div>

@@ -19,15 +19,15 @@
 <body>
 
 <div id="PostComment" class="Post-Comment">
-    <div class="com-top">
+    <div class="c-top">
         <img src="{% static 'path/to/avatar.jpg' %}" alt="">
-        <h5>{{ post.user.username  }}</h5>
+        <h5>{{ comment.user.username  }}</h5>
     </div>
     
-    <div class="com-blw">
+    <div class="c-bot">
         <form method="post" action="{% url 'create_comment' post.id %}">
             <p>{{ comment.content }}</p>
-            <button type="submit">Reply</button>
+            
         </form>
     </div>
 </div>

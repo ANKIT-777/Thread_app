@@ -62,15 +62,7 @@
     
 }
 
-.t-textbox img{
-    max-height: 30vh;
-    border-radius: 10px;
-    max-width: 100%;
-    margin: 20px 0;
-    display: flex;
-    align-self: flex-start;
 
-}
 
 .t-textbox video{
     max-height: 30vh;
@@ -120,25 +112,18 @@
 .Post-Comment{
     width: 100%;
     display: flex;
-    
+    border: 1px;
     text-align: left;
-    margin-top: 3vh;
+    
     z-index: 1000;
     position: relative;
     flex-direction: column;
-    
+    margin-bottom: 10px;
 }
 
-.Post-Comment textarea{
-    border: none;
-    width: 70%;
-    min-height: 5vh;
-    padding-top: 10px;
-    max-width: 30vw;
-    
-}
 
-.Post-Comment h4{
+.Post-Comment h5{
+    font-size: 10px;
     font-weight: lighter;
 }
 
@@ -149,32 +134,36 @@
     width: 80px;
     height: 35px;
     color: white;
-
     text-align: center;
 }
-.com-t{
+
+
+
+
+.c-top{
     display: flex;
     height: 10px;
 }
-.com-t img{
+.c-top img{
     width: 30px;
     height: 30px;
     margin: 0 10px;
     border-radius: 30px;
 }
-.com-blw{
+.c-bot  {
     
-    height: 3vh;
+    height: 6.5vh;
     padding-left: 30px;
     width: 100%;
     border-left: 1px solid rgb(185, 185, 185);
     margin-left: 24px;
 }
-.com-blw form{
+
+.c-bot p{
     display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    width: 80%;
+    font-weight: 200;
+    font-size: 12px;
+
 }
 
 
@@ -182,11 +171,13 @@
     border-radius: 20px;
     background-color: #8d8d8d;
     border: none;
-    width: 45px;
-    height: 25px;
+    width: 35px;
+    height: 15px;
+    font-size: 10px;
     color: white;
     text-align: center;
 
 }
+
 
 

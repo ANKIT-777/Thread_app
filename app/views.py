@@ -75,6 +75,19 @@ def user_profile(request):
         return render(request,'login.html')
 
  
+@login_required
+def edit_profile(request):
+    user_profile = UserProfile.objects.get_or_create(user=request.user)[0]
+
+    if request.method == 'POST':
+        profile_form = UserProfileForm(request.POST, request.FILES, instance=user_profile)
+        if profile_form.is_valid():
+            profile_form.save()
+    else:
+        profile_form = UserProfileForm(instance=user_profile)
+
+    return render(request, 'user.html', {'profile_form': profile_form})
+
  
  
 def home_page(request):
@@ -145,5 +158,5 @@ def thread(request, post_id):
         'post': post,
         'comments': comments,
     }
-
+    
     return render(request, 'thread.html', context)
