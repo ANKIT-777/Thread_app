@@ -20,7 +20,7 @@ class Post(models.Model):
 
 class UserProfile(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    name = models.CharField(max_length=50, default='')  # Add the default parameter here
+    name = models.CharField(max_length=50, default='') 
     profile_image = models.ImageField(upload_to='profile_images/', null=True, blank=True)
     bio = models.TextField(blank=True)
     instagram_url = models.URLField(blank=True)

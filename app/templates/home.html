@@ -28,7 +28,8 @@
         
         <div class="create-post">
           <div class="user-img">
-            <img src="{% static 'imgs/Ankit1.jpg' %}" alt="" />
+      
+            <img src="{{ userprofile.profile_image.url }}" alt="" />        
           </div>
           <button class="text-button" onclick="togglePopup()">
             Start a thread ....
@@ -97,11 +98,12 @@
 
         
 
-        {% for post in posts %}
-            <a href="{% url 'thread' post.id %}">
+        {% for post in posts|slice:"::-1" %}
+          <a href="{% url 'thread' post.id %}">
               {% include 'thread.html' with post=post %}
           </a>
         {% endfor %}
+
         
 
       </div>

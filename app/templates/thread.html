@@ -19,15 +19,17 @@
 </head>
 <body>
 
+
   <div class="thread">
     <div class="t-left">
       <div class="t-icon">
-        <img src="" alt="">
+        <img src="{{ userprofile.profile_image.url }}" alt="" />        
+
       </div>
     </div>
     <div class="t-box">
       <div class="t-top">
-        <h4>{{ post.user.first_name }}</h4>
+        <h4>{{ post.user }}</h4>
         <div class="t-drop">
           <h6>{{ post.created_at|naturaltime }}</h6>
 
@@ -76,7 +78,7 @@
       
           <div class="Post-Comment-Form">
               <div class="com-top">
-                  <img src="{% static '' %}" alt="">
+                <img src="{{ userprofile.profile_image.url }}" alt="" />           
                   <h5>{{ user.first_name }}</h5>
               </div>
             
