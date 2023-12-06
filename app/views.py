@@ -34,6 +34,7 @@ def register(request):
         return redirect('/login/')
     return render(request,'register.html')
 
+
 def login_view(request):
     if request.user.is_authenticated:
         return redirect('user_profile')
@@ -67,8 +68,10 @@ def logout_view(request):
 def user_profile(request):
     if request.user.is_authenticated:
         user = request.user
+        posts = Post.objects.filter(user = user)
         context = {
             'user': user,
+            'posts': posts
         }
         return render(request, 'user.html', context)
     else:
@@ -77,28 +80,28 @@ def user_profile(request):
  
 @login_required
 def edit_profile(request):
-    user_profile = UserProfile.objects.get_or_create(user=request.user)[0]
-
     if request.method == 'POST':
-        profile_form = UserProfileForm(request.POST, request.FILES, instance=user_profile)
-        if profile_form.is_valid():
-            profile_form.save()
+        form = UserProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            userprofile, created = UserProfile.objects.get_or_create(user=request.user)
+            
+            userprofile.name = form.cleaned_data['name']
+            userprofile.bio = form.cleaned_data['bio']
+            userprofile.instagram_url = form.cleaned_data['instagram_url']
+            userprofile.profile_image = form.cleaned_data['profile_image']
+
+            userprofile.save()
+
+            return redirect('user_profile') 
     else:
-        profile_form = UserProfileForm(instance=user_profile)
+        form = UserProfileForm()
+        
+    userinfo = UserProfile.objects.filter(user=request.user)
+    context = {'userinfo': userinfo, 'form': form}
+    return render(request, 'user.html', context)
 
-    return render(request, 'user.html', {'profile_form': profile_form})
 
- 
- 
-def home_page(request):
-    queryset = Post.objects.all()
-    context = {
-        'thread': queryset,
-    }
-    posts = Post.objects.all()
-    context = {'posts': posts}
-
-    return render(request,'home.html',context)
+    
 
 @login_required
 def create_post(request):
@@ -112,11 +115,18 @@ def create_post(request):
         form = Post()
 
     posts = Post.objects.all()
-        
-    context = {'posts': posts,}
+    context = {'posts': posts}
     return render(request, 'home.html', context)
 
 
+def home_page(request):
+    posts = Post.objects.all()
+    
+    print(posts)
+    context = {'posts': posts}
+    return render(request,'home.html',context)
+ 
+ 
 def like_post(request, post_id):
     post = Post.objects.get(id=post_id)
     post.likes_count += 1
@@ -150,13 +160,15 @@ def create_comment(request, post_id):
 
 
 
+@login_required
 def thread(request, post_id):
     post = get_object_or_404(Post, id=post_id)
     comments = Comment.objects.filter(post=post)
-
     context = {
         'post': post,
         'comments': comments,
     }
     
     return render(request, 'thread.html', context)
+
+

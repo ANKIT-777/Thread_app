@@ -20,12 +20,11 @@
 
 <div id="PostComment" class="Post-Comment">
     <div class="c-top">
-        <img src="{% static 'path/to/avatar.jpg' %}" alt="">
-        <h5>{{ comment.user.username  }}</h5>
+        <img src="{% static 'imgs/Ankit1.jpg' %}" alt="">
+        <h4>{{ comment.user.username  }}</h4>
     </div>
     
     <div class="c-bot">
-        <form method="post" action="{% url 'create_comment' post.id %}">
             <p>{{ comment.content }}</p>
             
         </form>

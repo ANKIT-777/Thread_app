@@ -15,6 +15,8 @@ urlpatterns = [
         path('like_post/<int:post_id>/', like_post, name='like_post'),
         path('thread/<int:post_id>/', thread, name='thread'),
         path('post/<int:post_id>/comment/', create_comment, name='create_comment'),
+        # path('user_post/', user_post, name='user_post')
+        path('edit_profile/', edit_profile, name='edit_profile'),
 
 
 ]

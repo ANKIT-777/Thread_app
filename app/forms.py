@@ -25,7 +25,8 @@ class CommentForm(forms.ModelForm):
         model = Comment
         fields = ['content']
 
+
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        fields = ['profile_image', 'bio', 'instagram_url']
+        fields = ['name','profile_image','bio','instagram_url']
