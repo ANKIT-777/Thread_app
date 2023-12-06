@@ -4,7 +4,6 @@ from .views import *
 from django.conf import settings
 from django.conf.urls.static import static
 
-
 urlpatterns = [
         path('login/', login_view, name='login'),
         path('register/', register, name='register'),
@@ -17,9 +16,9 @@ urlpatterns = [
         path('post/<int:post_id>/comment/', create_comment, name='create_comment'),
         # path('user_post/', user_post, name='user_post')
         path('edit_profile/', edit_profile, name='edit_profile'),
-
-
 ]
+
+
 
 
 

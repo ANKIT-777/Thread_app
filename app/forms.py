@@ -29,4 +29,17 @@ class CommentForm(forms.ModelForm):
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        fields = ['name','profile_image','bio','instagram_url']
+        fields = ['name', 'bio', 'instagram_url', 'profile_image']
+
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user', None)
+        super(UserProfileForm, self).__init__(*args, **kwargs)
+        if self.user:
+            self.fields['name'].initial = self.user.username
+
+    def save(self, commit=True):
+        instance = super(UserProfileForm, self).save(commit=False)
+        instance.user = self.user
+        if commit:
+            instance.save()
+        return instance

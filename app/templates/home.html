@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" />
     <title>navbar</title>
-    <link rel="stylesheet" href="{% static 'css/home.css'%}" />
+    <link rel="stylesheet" href="{% static 'css/home.css' %}" />
     <script>
       function togglePopup() {
         const overlay = document.getElementById("overlay");
@@ -16,11 +16,19 @@
       function myFunction() {
         document.getElementById("myDropdown").classList.toggle("show");
       }
+      
     </script>
   </head>
   <body>
     {% include 'navbar.html' %}
+    <div class="video-div">
+      <video id="myVideo" src="{% static 'imgs/backglobe.mp4' %}" autoplay muted loop></video>
+  </div>
+  
+  </div>
     <div class="page">
+      
+      
       <div class="left"></div>
       <div class="main">
         
@@ -29,7 +37,7 @@
         <div class="create-post">
           <div class="user-img">
       
-            <img src="{{ userprofile.profile_image.url }}" alt="" />        
+             <img src="{{ userprofile.profile_image.url }}" alt="" />         
           </div>
           <button class="text-button" onclick="togglePopup()">
             Start a thread ....
@@ -99,7 +107,7 @@
         
 
         {% for post in posts|slice:"::-1" %}
-          <a href="{% url 'thread' post.id %}">
+        <a href="{% url 'thread' post.id %}" style="text-decoration: none;">
               {% include 'thread.html' with post=post %}
           </a>
         {% endfor %}

@@ -20,6 +20,11 @@
   <body>
     {% include 'navbar.html' %}
 
+    <div class="video-div">
+      <video src="{% static 'imgs/backglobe.mp4' %}" autoplay muted loop >
+      </video>
+    </div>
+
     <div class="page">
       <div class="left"></div>
       <div class="main">
@@ -27,7 +32,7 @@
           <div class="p-top">
             <div class="p-left">
               <div class="name">
-                <div class="bold-name">{{ userprofile.name }}</div>
+                <div class="bold-name">{{ user.first_name }}</div>
                 <div class="username">{{ user.username }}</div>
               </div>
 
@@ -46,11 +51,12 @@
             <div class="p-right">
               <div class="profile-icon">
                 {% if userprofile.profile_image %}
-                    <img src="{{ userprofile.profile_image.url }}" alt="">
-                  {% else %}
-                  <img src="{% static '' %}" alt="Default Profile Image">
-                {% endif %}
-
+                <img src="{{ userprofile.profile_image.url }}" alt="Profile Image">
+            {% else %}
+                <!-- Provide a default image or leave it empty if you don't want to show anything -->
+                <img src="{% static 'imgs/Ankit1.jpg' %}" alt="Default Profile Image">
+            {% endif %}
+        
 
               </div>
               <div class="insta-icon"></div>
@@ -63,11 +69,7 @@
             </button>
 
             <div id="editprofile" class="edit-body">
-              <form
-                method="post"
-                action="{% url 'edit_profile' %}"
-                enctype="multipart/form-data"
-              >
+              <form method="post" action="{% url 'edit_profile' %}" enctype="multipart/form-data">
                 {% csrf_token %}
 
                 <div class="edit-box-t">
@@ -111,10 +113,10 @@
           <div class="feed-bt">Reposts</div>
         </div>
 
-        {% for post in posts %}
-        <a href="{% url 'thread' post.id %}">
-          {% include 'thread.html' with post=post %}
-        </a>
+        {% for post in posts|slice:"::-1" %}
+          <a href="{% url 'thread' post.id %}">
+              {% include 'thread.html' with post=post %}
+          </a>
         {% endfor %}
       </div>
       <div class="right"></div>

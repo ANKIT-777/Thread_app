@@ -6,8 +6,7 @@ from django.contrib.auth.models import User
 from app.models import Post
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
-from django.http import HttpResponseBadRequest
-
+from django.http import QueryDict
 
 
 
@@ -71,7 +70,6 @@ def user_profile(request):
         user = request.user
         userprofile, created = UserProfile.objects.get_or_create(user=user)
         posts = Post.objects.filter(user=user)
-
         context = {
             'user': user,
             'userprofile': userprofile, 
@@ -82,23 +80,34 @@ def user_profile(request):
         return render(request, 'login.html')
 
  
+
+
+
+ 
 @login_required
 def edit_profile(request):
-    userprofile, created = UserProfile.objects.get_or_create(user=request.user)
-    
     if request.method == 'POST':
-        form = UserProfileForm(request.POST, request.FILES, instance=userprofile)
+        form = UserProfileForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            userprofile, created = UserProfile.objects.get_or_create(user=request.user)
+            userprofile.name = form.cleaned_data['name']
+            userprofile.bio = form.cleaned_data['bio']
+            userprofile.instagram_url = form.cleaned_data['instagram_url']
+            userprofile.profile_image = form.cleaned_data['profile_image']
+
+            userprofile.save()
+
             return redirect('user_profile') 
     else:
-        form = UserProfileForm(instance=userprofile)
+        form = UserProfileForm()
         
-    context = {'userinfo': userprofile, 'form': form}
+    userinfo = UserProfile.objects.filter(user=request.user)
+    context = {'userinfo': userinfo, 'form': form}
     return render(request, 'user.html', context)
 
 
-    
+
+
 
 @login_required
 def create_post(request):
@@ -109,16 +118,13 @@ def create_post(request):
             post.user = request.user
             post.save()
     else:
-        form = Post()
-
+        form = PostForm()
     posts = Post.objects.all()
-    context = {'posts': posts}
+    context = {'posts': posts, 'form': form}
     return render(request, 'home.html', context)
 
-
-
  
- 
+@login_required 
 def like_post(request, post_id):
     post = Post.objects.get(id=post_id)
     post.likes_count += 1
@@ -129,7 +135,6 @@ def like_post(request, post_id):
 @login_required
 def create_comment(request, post_id):
     post = get_object_or_404(Post, id=post_id)
-
     if request.method == 'POST':
         form = CommentForm(request.POST)
         if form.is_valid():
@@ -137,7 +142,7 @@ def create_comment(request, post_id):
             comment.user = request.user  
             comment.post = post
             comment.save()
-            return redirect('home_page')
+            return redirect('thread', post_id=post.id)
     form = CommentForm()
     
     comments = Comment.objects.filter(post=post)
@@ -147,7 +152,8 @@ def create_comment(request, post_id):
         'comments': comments,
         'userprofile' : userprofile
     }
-    return render(request, 'home.html', context)
+    return render(request, 'thread.html', context)
+
 
 
 
@@ -156,12 +162,12 @@ def create_comment(request, post_id):
 def thread(request, post_id):
     post = get_object_or_404(Post, id=post_id)
     comments = Comment.objects.filter(post=post)
-    user = request.user
+    user = post.user
     userprofile, created = UserProfile.objects.get_or_create(user=user)
     context = {
         'post': post,
         'comments': comments,
-        'userprofile': userprofile
+        'postuser': userprofile
     }
     return render(request, 'thread.html', context)
 
@@ -176,4 +182,3 @@ def home_page(request):
         'userprofile' : userprofile,
         }
     return render(request,'home.html',context)
-

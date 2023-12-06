@@ -23,8 +23,7 @@
   <div class="thread">
     <div class="t-left">
       <div class="t-icon">
-        <img src="{{ userprofile.profile_image.url }}" alt="" />        
-
+        <img src="{% if postuser.profile_image.url %}{{ postuser.profile_image.url }}{% else %}{{ userprofile.profile_image.url }}{% endif %}" alt="" />
       </div>
     </div>
     <div class="t-box">
@@ -77,15 +76,11 @@
           {% endfor %}
       
           <div class="Post-Comment-Form">
-              <div class="com-top">
-                <img src="{{ userprofile.profile_image.url }}" alt="" />           
-                  <h5>{{ user.first_name }}</h5>
-              </div>
-            
               <div class="com-bot">
                   <form method="post" action="{% url 'create_comment' post.id %}">
                       {% csrf_token %}
-                      <textarea name="content" placeholder="Add a comment..."></textarea>
+                      <img src="{{ userprofile.profile_image.url }}" alt="" />
+                      <textarea name="content" placeholder="{{ user.first_name }} write your comment" ></textarea>
                       <button type="submit">Comment</button>
                   </form>
               </div>

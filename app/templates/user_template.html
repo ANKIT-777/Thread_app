@@ -1,0 +1,78 @@
+<div class="profilebox">
+    <div class="p-top">
+      <div class="p-left">
+        <div class="name">
+          <div class="bold-name">{{ user.first_name }}</div>
+          <div class="username">{{ user.username }}</div>
+        </div>
+
+        <div class="bio">
+          <p>{{ userprofile.bio }}</p>
+        </div>
+
+        <div class="followers">
+          <img src="{% static "imgs/ig-logo-135.png" %}" alt="">
+
+          <h5>554</h5>
+          <h5>followers</h5>
+        </div>
+      </div>
+
+      <div class="p-right">
+        <div class="profile-icon">
+          {% if userprofile.profile_image %}
+          <img src="{{ userprofile.profile_image.url }}" alt="Profile Image">
+      {% else %}
+          <!-- Provide a default image or leave it empty if you don't want to show anything -->
+          <img src="{% static 'imgs/Ankit1.jpg' %}" alt="Default Profile Image">
+      {% endif %}
+  
+
+        </div>
+        <div class="insta-icon"></div>
+      </div>
+    </div>
+
+    <div class="p-bottom">
+      <button class="edit-profile" onclick="editProfile()">
+        Edit profile
+      </button>
+
+      <div id="editprofile" class="edit-body">
+        <form method="post" action="{% url 'edit_profile' %}" enctype="multipart/form-data">
+          {% csrf_token %}
+
+          <div class="edit-box-t">
+            <div class="edit-left">
+              <h4>Name</h4>
+              <input
+                type="text"
+                name="name"
+                placeholder="Enter your name"
+              />
+            </div>
+            <div class="edit-rig"></div>
+          </div>
+          <div class="edit-box">
+            <h4>Bio</h4>
+            <input type="text" name="bio" placeholder="Enter your bio" />
+          </div>
+          <div class="edit-box">
+            <h4>Link</h4>
+            <input
+              type="text"
+              name="instagram_url"
+              placeholder="Enter your link"
+            />
+          </div>
+          <div class="edit-box">
+            <h4>Image</h4>
+            <input type="file" name="profile_image" accept="image/*" />
+          </div>
+          <div class="edit-box">
+            <button type="submit">Done</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

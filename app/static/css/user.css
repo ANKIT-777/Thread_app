@@ -132,7 +132,7 @@
 }
 
 .profilebox{
-    background-color: white;
+    backdrop-filter: blur(3px); 
     border-radius: 20px;
     border: 1px solid rgb(201, 201, 201);
     width: 100%;
@@ -247,7 +247,8 @@
     border-radius: 10px;
     height:4.5vh;
     border: 1px solid gray;
-    background-color: white;
+    
+    backdrop-filter: blur(3px); 
     font-weight: bold;
     font-size: 15px ;
 }

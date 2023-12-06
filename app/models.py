@@ -11,7 +11,7 @@ class Comment(models.Model):
 class Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE) 
     content = models.TextField()
-    image = models.ImageField(upload_to='post_images/', null=True, blank=True)
+    image = models.ImageField(upload_to='post_images/', blank=True, null=True)
     video = models.FileField(upload_to='post_videos/', null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     likes_count = models.PositiveIntegerField(default=0)
@@ -19,10 +19,10 @@ class Post(models.Model):
     comments = models.ManyToManyField(Comment, related_name='comment_posts', blank=True)
 
 class UserProfile(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    name = models.CharField(max_length=50, default='') 
-    profile_image = models.ImageField(upload_to='profile_images/', null=True, blank=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    name = models.CharField(max_length=255, blank=True)
     bio = models.TextField(blank=True)
     instagram_url = models.URLField(blank=True)
-    
+    profile_image = models.ImageField(upload_to='profile_images/', blank=True, null=True)
+
         
