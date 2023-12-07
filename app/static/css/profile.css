@@ -1,10 +1,3 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: sans-serif;
-    text-decoration: none;
-}
 
 .video-div{
     position: fixed;
@@ -20,18 +13,18 @@
 
 }
 
+
 .page{
     display: flex;
     width: 100%;
     height: 100vh;
-    position: relative;  
-    z-index: 1;  
+    position: relative;
     
 }
 
 .left{
     display: flex;
-    width: 27.5vw;
+    width: 30vw;
     position: relative;
     height: 100vh;
     
@@ -39,7 +32,7 @@
 
 .right{
     display: flex;
-    width: 27.5vw;
+    width: 30vw;
     position: relative;
     height: 100vh;
     
@@ -47,13 +40,136 @@
 
 
 .main{
-    position: relative;
-
     display: flex;
-    width: 45vw;
+    width: 600px;
     flex-direction: column;
-    z-index: 1;
+    min-height: 150vh;
 
+}
+
+
+
+.profilebox{
+    backdrop-filter: blur(3px); 
+    border-radius: 20px;
+    border: 1px solid rgb(201, 201, 201);
+    width: 45vw;
+    height: 40vh;
+    margin-top: 13vh;
+    padding: 20px;
+    box-shadow: 0px 5px 24px 3px rgba(204, 204, 204, 0.42);
+
+    
+}
+
+
+.p-left{
+    display: flex;
+    flex-direction: column;
+    max-height: 100%;
+    width: 50%;
+    justify-content: space-evenly;
+}
+
+
+
+.p-top{
+    display: flex;
+    height: 30vh;
+    width: 100%;
+    
+}
+
+
+
+.name{
+    height: 30%;
+    display: flex;
+    
+    flex-direction: column;
+    
+}
+
+.bold-name{
+    height: 60%;
+    font-size: 2vw;
+    font-weight: bold;
+}
+.username{
+    height: 30%;
+    font-size: 1vw;
+    font-weight: lighter;
+}
+
+.bio{
+    max-height: 50%;
+}
+
+.followers{
+    display: flex;
+    height: 10%;
+    width: 40%;
+    justify-content: space-between;
+    
+    align-items: center;
+}
+.followers img{
+    border-radius: 50%;
+    height: 50%;
+}
+
+
+.p-right{
+    display: flex;
+    align-items: flex-end;
+    height: 100%;
+    width: 50%;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.profile-icon{
+    height: 15vh;
+    width: 15vh;    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-icon img{
+    height: 12vh;
+    width: 12vh;
+    border-radius: 12vh;
+}
+
+.insta-icon{
+    height: 10vh;
+    width: 10vh;
+    background-image: url('../imgs/instagram.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 30%;
+
+
+}
+
+
+.p-bot{
+    display: flex;
+    height: 10vh;
+    width: 100%;
+    align-items: center;
+    justify-content: space-evenly;
+    
+}
+
+.p-bot button{
+    width: 45%;
+    height: 4vh;
+    border-radius: 10px;
+    border: 1px solid grey;
+    background-color: rgba(255, 255, 255, 0.189);
+    font-size: 15px;
+    font-weight: bold;
 }
 
 
@@ -249,223 +365,4 @@
     color: white;
     font-weight: bold;
     font-size: 13px;
-}
-
-
-
-.thread{
-    width: 45vw;
-    display: flex;
-    position: relative;
-    margin-top: 3vh;
-    border-bottom: 1px solid rgba(128, 128, 128, 0.432) ;
-    padding: 5vh 2vh 5vh 2vw;
-    backdrop-filter: blur(3px); 
-    border-radius: 20px;
-    border: 1px solid rgb(177, 177, 177);
-    box-shadow: 0px 20px 24px 5px rgba(177, 177, 177, 0.42);
-    z-index: 2;
-     
-}
-
-
-
-
-
-.t-left{
-    height: 100%;
-    width: 60px;
-    
-}
-
-.t-icon{
-    height: 40px;
-    width : 65px;
-    
-    
-}
-
-.t-icon img{
-    height: 40px;
-    width : 40px;
-    border-radius: 100%;
-}
-
-.t-box{
-    width: 90%;
-    max-height: 80%;
-}
-.t-top  {
-    height: 5%;
-    width: 100%;
-    display: flex;
-    margin-bottom: 10px;
-    justify-content: space-between;
-}
-.t-top h4{
-    text-decoration: none;
-}
-
-.t-drop{
-    display: flex;
-    width: 25%;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.t-drop img{
-    width: 10px;
-}
-
-.t-textbox{
-    max-width: 100%;
-    font-weight: lighter;
-    color: rgb(16, 15, 15);
-    font-size: 13px;
-    word-wrap:normal; 
-    margin-bottom: 10px;
-   
-    
-}
-
-.t-textbox img{
-    width: 30vw;
-    border-radius: 10px;
-    margin: 20px 0;
-    align-self: flex-start;
-    box-shadow: 0px 10px 24px 3px rgba(208, 208, 208, 0.42);
-
-}
-
-.t-textbox video{
-    width: 30vw;
-    border-radius: 10px;
-    margin: 20px 0;
-    align-self: flex-start;
-    box-shadow: 0px 10px 24px 3px rgba(208, 208, 208, 0.42);
-
-
-}
-
-.t-textbox p{
-    font-weight:lighter;
-    max-width: 80%;
-}
-
-.t-bottom{
-    height: 10%;
-    
-}
-
-.t-buttons{
-    display: flex;
-    height: 5vh;
-   align-items: center;
-    width: 10vw;
-    justify-content: space-between;
-}
-
-.t-buttons img{
-    width: 20px;
-}
-
-.t-b-likes{
-    display: flex;
-    height: 5vh;
-    width:  10%;
-    padding-left: 15px;
-    
-    justify-content: space-between;
-}
-
-
-.t-b-likes h4{
-    font-weight: lighter;
-    color: grey;
-    margin-top: 1px  ;
-}
-
-.Post-Comment-Form{
-    width: 100%;
-    border-radius: 15px;
-}
-.Post-Comments{
-    
-    width: 90%;
-    display: flex;
-    text-align: left;
-    position: relative;
-    flex-direction: column;
-    border-left:1px  solid grey;
-    border-right:1px  solid grey;
-    padding: 10px;
-    align-items: center;
-    border-radius: 15px;
-    box-shadow: 0px 10px 24px 3px rgba(218, 218, 218, 0.42);
-
-    
-}
-
-
-
-.Post-Comments h4{
-    font-weight: lighter;
-
-}
-
-.Post-Comment button{
-    border-radius: 20px;
-    background-color: #8d8d8d;
-    border: none;
-    width: 80px;
-    height: 35px;
-    color: white;
-
-    text-align: center;
-}
-
-
-
-
-
-.com-bot img{
-    width: 40px;
-    height: 40px;
-    margin: 0 10px;
-    border-radius: 30px;
-}
-.com-bot{
-    
-    min-height: 6vh;
-    width: 100%;
-    
-}
-.com-bot form{
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    width: 100%;
-}
-
-
-.com-bot textarea {
-    display: flex;
-    align-items: center;
-    border: none;
-    width: 70%;
-    border: none;
-    text-align: left;
-    background-color: #ffffff00;
-    
-}
-
-.com-bot button {
-    border-radius: 20px;
-    background-color: #8d8d8d;
-    border: none;
-    width: 80px;
-    height: 35px;
-    color: white;
-    text-align: center;
-
 }

@@ -6,7 +6,8 @@ from django.contrib.auth.models import User
 from app.models import Post
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
-from django.http import QueryDict
+from django.http import HttpResponseRedirect
+
 
 
 
@@ -84,6 +85,7 @@ def user_profile(request):
 
 
  
+
 @login_required
 def edit_profile(request):
     if request.method == 'POST':
@@ -94,13 +96,13 @@ def edit_profile(request):
             userprofile.bio = form.cleaned_data['bio']
             userprofile.instagram_url = form.cleaned_data['instagram_url']
             userprofile.profile_image = form.cleaned_data['profile_image']
-
             userprofile.save()
+            
+            return redirect(reverse('user_profile'))
 
-            return redirect('user_profile') 
     else:
         form = UserProfileForm()
-        
+
     userinfo = UserProfile.objects.filter(user=request.user)
     context = {'userinfo': userinfo, 'form': form}
     return render(request, 'user.html', context)
@@ -109,28 +111,31 @@ def edit_profile(request):
 
 
 
+
 @login_required
 def create_post(request):
+    context = {}  
+
     if request.method == 'POST':
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():
             post = form.save(commit=False)
             post.user = request.user
             post.save()
+            posts = Post.objects.all()
+            context = {'posts': posts, 'form': form}
+            return render(request, 'home.html', context)
     else:
         form = PostForm()
+
     posts = Post.objects.all()
-    context = {'posts': posts, 'form': form}
+    context['form'] = form  
+    context['posts'] = posts 
+
     return render(request, 'home.html', context)
 
- 
-@login_required 
-def like_post(request, post_id):
-    post = Post.objects.get(id=post_id)
-    post.likes_count += 1
-    post.save()
-    return redirect('home_page')
 
+ 
 
 @login_required
 def create_comment(request, post_id):
@@ -182,3 +187,38 @@ def home_page(request):
         'userprofile' : userprofile,
         }
     return render(request,'home.html',context)
+
+
+
+def user_view(request,user_id):
+    user = get_object_or_404(User, id=user_id)
+    userprofile, created = UserProfile.objects.get_or_create(user=user)
+    context = {
+        'userprofile' : userprofile 
+    }
+    
+    return render(request, 'user_template.html', context)
+
+
+@login_required 
+def like_post(request, post_id):
+    post = Post.objects.get(id=post_id)
+    post.likes_count += 1
+    post.save()
+    return redirect('home_page')
+
+ 
+
+@login_required
+def user_follow(request, user_id):
+    user_to_follow = User.objects.get(pk=user_id)
+    user_profile = UserProfile.objects.get(user=request.user)
+    user_profile.followers.add(user_to_follow)
+    return redirect('user_view', user_id=user_id)
+
+@login_required
+def user_unfollow(request, user_id):
+    user_to_unfollow = User.objects.get(pk=user_id)
+    user_profile = UserProfile.objects.get(user=request.user)
+    user_profile.followers.remove(user_to_unfollow)
+    return redirect('user_view', user_id=user_id)

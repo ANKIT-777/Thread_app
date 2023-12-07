@@ -27,9 +27,15 @@ class CommentForm(forms.ModelForm):
 
 
 class UserProfileForm(forms.ModelForm):
+    followers = forms.ModelMultipleChoiceField(
+        queryset=User.objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+        required=False,  # Users are not required to select followers in the form
+    )
     class Meta:
         model = UserProfile
-        fields = ['name', 'bio', 'instagram_url', 'profile_image']
+        fields = ['name', 'bio', 'instagram_url', 'profile_image', 'followers']
+
 
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user', None)
@@ -42,4 +48,5 @@ class UserProfileForm(forms.ModelForm):
         instance.user = self.user
         if commit:
             instance.save()
+            self.save_m2m()
         return instance

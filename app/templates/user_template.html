@@ -1,78 +1,85 @@
-<div class="profilebox">
-    <div class="p-top">
-      <div class="p-left">
-        <div class="name">
-          <div class="bold-name">{{ user.first_name }}</div>
-          <div class="username">{{ user.username }}</div>
-        </div>
+{% load static %} {% load humanize %}
 
-        <div class="bio">
-          <p>{{ userprofile.bio }}</p>
-        </div>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>thread</title>
+    <link rel="stylesheet" href="{% static 'css/profile.css'%}" />
+  </head>
+  <body>
 
-        <div class="followers">
-          <img src="{% static "imgs/ig-logo-135.png" %}" alt="">
+    {% include 'navbar.html' %}
 
-          <h5>554</h5>
-          <h5>followers</h5>
-        </div>
-      </div>
-
-      <div class="p-right">
-        <div class="profile-icon">
-          {% if userprofile.profile_image %}
-          <img src="{{ userprofile.profile_image.url }}" alt="Profile Image">
-      {% else %}
-          <!-- Provide a default image or leave it empty if you don't want to show anything -->
-          <img src="{% static 'imgs/Ankit1.jpg' %}" alt="Default Profile Image">
-      {% endif %}
-  
-
-        </div>
-        <div class="insta-icon"></div>
-      </div>
+    <div class="video-div">
+      <video
+        src="{% static 'imgs/backglobe.mp4' %}"
+        autoplay
+        muted
+        loop
+      ></video>
     </div>
 
-    <div class="p-bottom">
-      <button class="edit-profile" onclick="editProfile()">
-        Edit profile
-      </button>
+    <div class="page">
+      <div class="left"></div>
+      <div class="main">
+        <div class="profilebox">
+          <div class="p-top">
+            <div class="p-left">
+              <div class="name">
+                <div class="bold-name">{{ userprofile.name }}</div>
+                <div class="username">{{  userprofile.user.username  }}</div>
+              </div>
 
-      <div id="editprofile" class="edit-body">
-        <form method="post" action="{% url 'edit_profile' %}" enctype="multipart/form-data">
-          {% csrf_token %}
+              <div class="bio">
+                <p>{{ userprofile.bio }}</p>
+              </div>
 
-          <div class="edit-box-t">
-            <div class="edit-left">
-              <h4>Name</h4>
-              <input
-                type="text"
-                name="name"
-                placeholder="Enter your name"
-              />
+              <div class="followers">
+                <img src="{% static "imgs/ig-logo-135.png" %}" alt="">
+
+                <h5>{{ userprofile.userprofile.followers.count }}</h5>
+                <h5>followers</h5>
+              </div>
             </div>
-            <div class="edit-rig"></div>
+
+            <div class="p-right">
+              <div class="profile-icon">
+                {% if userprofile.profile_image %}
+                <img
+                  src="{{ userprofile.profile_image.url }}"
+                  alt="Profile Image"
+                />
+                {% else %}
+                <!-- Provide a default image or leave it empty if you don't want to show anything -->
+                <img
+                  src="{% static 'imgs/Ankit1.jpg' %}"
+                  alt="Default Profile Image"
+                />
+                {% endif %}
+              </div>
+              <div class="insta-icon"></div>
+            </div>
           </div>
-          <div class="edit-box">
-            <h4>Bio</h4>
-            <input type="text" name="bio" placeholder="Enter your bio" />
-          </div>
-          <div class="edit-box">
-            <h4>Link</h4>
-            <input
-              type="text"
-              name="instagram_url"
-              placeholder="Enter your link"
-            />
-          </div>
-          <div class="edit-box">
-            <h4>Image</h4>
-            <input type="file" name="profile_image" accept="image/*" />
-          </div>
-          <div class="edit-box">
-            <button type="submit">Done</button>
-          </div>
-        </form>
+
+          <div class="p-bot">
+            {% if request.user in userprofile.followers.all %}
+    <a href="{% url 'unfollow' userprofile.user.id %}">
+        <button type="submit" name="follow">Following</button>
+    </a> 
+{% else %}
+    <a href="{% url 'user_follow' userprofile.user.id %}">
+        <button type="submit" name="follow">Follow</button>
+    </a> 
+{% endif %}
+
+            <button>Mention</button>
+        </div>
+        </div>
+
       </div>
+      <div class="right"></div>
     </div>
-  </div>
+  </body>
+</html>

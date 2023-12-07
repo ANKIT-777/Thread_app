@@ -8,11 +8,16 @@
     <title>navbar</title>
     <link rel="stylesheet" href="{% static 'css/home.css' %}" />
     <script>
-      function togglePopup() {
+      function showPopup() {
         const overlay = document.getElementById("overlay");
-        overlay.style.display =
-          overlay.style.display === "none" ? "flex" : "none";
+        overlay.style.display = "flex";
       }
+    
+      function hidePopup() {
+        const overlay = document.getElementById("overlay");
+        overlay.style.display = "none";
+      }
+    
       function myFunction() {
         document.getElementById("myDropdown").classList.toggle("show");
       }
@@ -22,7 +27,7 @@
   <body>
     {% include 'navbar.html' %}
     <div class="video-div">
-      <video id="myVideo" src="{% static 'imgs/backglobe.mp4' %}" autoplay muted loop></video>
+      {% comment %} <video id="myVideo" src="{% static 'imgs/backglobe.mp4' %}" autoplay muted loop></video> {% endcomment %}
   </div>
   
   </div>
@@ -53,14 +58,11 @@
               enctype="multipart/form-data"
             >
               {% csrf_token %}
-              <div class="popup">
-                <div class="pop-top">
-
-                </div>
+          
                 <div class="pt-rig">
                     <div class="pt-1">
                         <div class="h5">{{ user.username }}</div>
-                        <button class="close" onclick="togglePopup()">Close</button>
+                        <button class="close" onclick="hidePopup()">Close</button>
                     </div>
                   <div class="pt-content">
                     <textarea
@@ -98,7 +100,6 @@
                   <div class="pt-bot">
                     <button type="submit" class="pt-button">Post</button>
                   </div>
-                </div>
               </div>
             </form>
           </div>
