@@ -20,7 +20,11 @@
 
 <div id="PostComment" class="Post-Comment">
     <div class="c-top">
-        <img src="{% if postuser.profile_image.url %}{{ postuser.profile_image.url }}{% else %}{{ userprofile.profile_image.url }}{% endif %}" alt="" />
+        <img src="{% if commentuser.profile_image %}
+                        {{ commentuser.profile_image.url }}
+                    {% else %}
+                        {  }
+                    {% endif %}" alt="" />
         
         <div class="c-top-text">
         <h4>{{ comment.user.username  }}</h4>

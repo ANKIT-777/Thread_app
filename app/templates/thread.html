@@ -99,7 +99,9 @@
 
           <div class="Post-Comments">
             {% for comment in comments %} 
-            {% include 'comments.html' with comment=comment %} 
+              {% with commentuser=comment.user.userprofile %}
+                {% include 'comments.html' with comment=comment commentuser=commentuser  %} 
+              {% endwith %}
             {% endfor %}
 
             <div class="Post-Comment-Form">
