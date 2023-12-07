@@ -107,13 +107,11 @@
                 <form method="post" action="{% url 'create_comment' post.id %}">
                   {% csrf_token %}
                   <img 
-                  src="{% if postuser.profile_image %}
-            {{ postuser.profile_image.url }}
-          {% elif userprofile.profile_image %}
-                  {{ userprofile.profile_image.url }}
-              {% else %}
+                  src="{% if request.user.userprofile.profile_image %}
+                  {{ request.user.userprofile.profile_image.url }}
+                  {% else %}
                   {% static 'imgs/default-profile-image.png' %}
-              {% endif %}"
+                {% endif %}"
                   alt="" />
                   <textarea
                     name="content"

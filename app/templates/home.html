@@ -98,10 +98,13 @@
         
 
         {% for post in posts|slice:"::-1" %}
-        <a href="{% url 'thread' post.id %}" style="text-decoration: none;">
-              {% include 'thread.html' with post=post %}
-          </a>
+            <a href="{% url 'thread' post.id %}" style="text-decoration: none;">
+                {% with postuser=post.user.userprofile %}
+                    {% include 'thread.html' with post=post postuser=postuser %}
+                {% endwith %}
+            </a>
         {% endfor %}
+
 
         
 
