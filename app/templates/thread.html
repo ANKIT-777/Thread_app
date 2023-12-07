@@ -8,14 +8,25 @@
     <title>thread</title>
     <link rel="stylesheet" href="{% static 'css/home.css'%}" />
     <script>
-      function toggleComment() {
-        const overlay = document.getElementById("PostComment");
-        overlay.style.display =
-          overlay.style.display === "flex" ? "none" : "flex";
-      }
+      document.addEventListener("DOMContentLoaded", function() {
+        function toggleComment() {
+          const overlay = document.getElementById("PostComment");
+          overlay.style.display = overlay.style.display === "flex" ? "none" : "flex";
+        }
+    
+        function myDrop() {
+          document.getElementById("t_more").classList.toggle("drop");
+        }
+    
+
+        document.getElementById("ellipsis").addEventListener("click", myDrop);
+      });
+    
     </script>
   </head>
   <body>
+  
+        
     <div class="thread">
       <div class="t-left">
         <div class="t-icon">
@@ -36,19 +47,21 @@
       </div>
       <div class="t-box">
         <div class="t-top">
+          <a href="{% url 'user_view' post.user.id %}">
           <h4>{{ post.user }}</h4>
-          <div class="t-drop">
-            <h6>{{ post.created_at|naturaltime }}</h6>
+        </a>
+        <div class="t-drop">
+          <h6>{{ post.created_at|naturaltime }}</h6>
 
-            <img
-              src="{% static 'imgs/icons8-ellipsis-50.png' %}"
-              alt=""
-              style="width: 25px"
-            />
-          </div>
+            <img src="{% static 'imgs/icons8-ellipsis-50.png' %}" alt="" style="width: 25px" />
+          
         </div>
+    
+        </div>
+        <a href="{% url 'thread' post.id %}">
         <div class="t-textbox">
           <p>{{ post.content }}</p>
+          
           {% if post.image %}
           <img src="{{ post.image.url }}" alt="" />
           {% endif %} {% if post.video %}
@@ -58,6 +71,8 @@
           </video>
           {% endif %}
         </div>
+
+      </a>
 
         <div class="t-bottom">
           <div class="t-buttons">
@@ -112,5 +127,6 @@
         </div>
       </div>
     </div>
+
   </body>
 </html>

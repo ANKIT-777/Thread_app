@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 from app.models import Post
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
-from django.http import HttpResponseRedirect
+
 
 
 
@@ -81,11 +81,6 @@ def user_profile(request):
         return render(request, 'login.html')
 
  
-
-
-
- 
-
 @login_required
 def edit_profile(request):
     if request.method == 'POST':
@@ -124,7 +119,7 @@ def create_post(request):
             post.save()
             posts = Post.objects.all()
             context = {'posts': posts, 'form': form}
-            return render(request, 'home.html', context)
+            return redirect('home_page')
     else:
         form = PostForm()
 
@@ -132,7 +127,7 @@ def create_post(request):
     context['form'] = form  
     context['posts'] = posts 
 
-    return render(request, 'home.html', context)
+    return redirect('home_page')
 
 
  
@@ -182,6 +177,7 @@ def home_page(request):
     user = request.user
     userprofile, created = UserProfile.objects.get_or_create(user=user)
     
+    
     context = {
         'posts': posts,
         'userprofile' : userprofile,
@@ -193,8 +189,17 @@ def home_page(request):
 def user_view(request,user_id):
     user = get_object_or_404(User, id=user_id)
     userprofile, created = UserProfile.objects.get_or_create(user=user)
+    
+    posts = Post.objects.filter(user=user)
+    
+    logged_profile = UserProfile.objects.get(user = request.user)
+    
+    is_following = logged_profile.following.filter(username=user.username).exists()
+    print(is_following)
     context = {
-        'userprofile' : userprofile 
+        'userprofile' : userprofile,
+        'is_following': is_following,
+        'posts' : posts
     }
     
     return render(request, 'user_template.html', context)
@@ -207,18 +212,25 @@ def like_post(request, post_id):
     post.save()
     return redirect('home_page')
 
- 
 
-@login_required
-def user_follow(request, user_id):
-    user_to_follow = User.objects.get(pk=user_id)
-    user_profile = UserProfile.objects.get(user=request.user)
-    user_profile.followers.add(user_to_follow)
+def follow_user(request, user_id):
+    user_to_follow = get_object_or_404(User, id=user_id)
+    
+    user_to_follow_profile = UserProfile.objects.get(user=user_to_follow)
+    logged_user = request.user  
+    
+    if user_to_follow_profile.followers.filter(id=logged_user.id).exists():
+        logged_user.userprofile.following.remove(user_to_follow)
+        user_to_follow_profile.followers.remove(logged_user)
+    else:
+        user_to_follow_profile.followers.add(logged_user)
+        logged_user.userprofile.following.add(user_to_follow)
+        
+        
+        
+    context = {
+        'userprofile' : user_to_follow_profile
+        }
     return redirect('user_view', user_id=user_id)
 
-@login_required
-def user_unfollow(request, user_id):
-    user_to_unfollow = User.objects.get(pk=user_id)
-    user_profile = UserProfile.objects.get(user=request.user)
-    user_profile.followers.remove(user_to_unfollow)
-    return redirect('user_view', user_id=user_id)
+

@@ -13,12 +13,12 @@
     {% include 'navbar.html' %}
 
     <div class="video-div">
-      <video
+      {% comment %} <video
         src="{% static 'imgs/backglobe.mp4' %}"
         autoplay
         muted
         loop
-      ></video>
+      ></video> {% endcomment %}
     </div>
 
     <div class="page">
@@ -39,7 +39,7 @@
               <div class="followers">
                 <img src="{% static "imgs/ig-logo-135.png" %}" alt="">
 
-                <h5>{{ userprofile.userprofile.followers.count }}</h5>
+                <h5>{{ userprofile.followers.count }}</h5>
                 <h5>followers</h5>
               </div>
             </div>
@@ -52,7 +52,6 @@
                   alt="Profile Image"
                 />
                 {% else %}
-                <!-- Provide a default image or leave it empty if you don't want to show anything -->
                 <img
                   src="{% static 'imgs/Ankit1.jpg' %}"
                   alt="Default Profile Image"
@@ -64,19 +63,28 @@
           </div>
 
           <div class="p-bot">
-            {% if request.user in userprofile.followers.all %}
-    <a href="{% url 'unfollow' userprofile.user.id %}">
-        <button type="submit" name="follow">Following</button>
-    </a> 
-{% else %}
-    <a href="{% url 'user_follow' userprofile.user.id %}">
-        <button type="submit" name="follow">Follow</button>
-    </a> 
-{% endif %}
-
+            {% if is_following %}
+            <form method="post" action="{% url 'follow' userprofile.user.id %}">
+              {% csrf_token %}
+              <button type="submit" name="follow">Following</button>
+            </form>
+          {% else %}
+            <form method="post" action="{% url 'follow' userprofile.user.id %}">
+              {% csrf_token %}
+              <button type="submit" name="follow">Follow</button>
+            </form>
+          {% endif %}
+          
+        
             <button>Mention</button>
         </div>
         </div>
+
+        {% for post in posts|slice:"::-1" %}
+        <a href="{% url 'thread' post.id %}" style="text-decoration: none;">
+              {% include 'thread.html' with post=post %}
+          </a>
+        {% endfor %}
 
       </div>
       <div class="right"></div>

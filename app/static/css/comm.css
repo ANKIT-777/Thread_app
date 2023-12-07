@@ -79,6 +79,12 @@
     max-width: 80%;
 }
 
+.c-top-text{
+    display: flex;
+    width: 85%;
+    justify-content: space-between;
+}
+
 .t-bottom{
     height: 10%;
     
@@ -114,11 +120,10 @@
     display: flex;
     border: 1px;
     text-align: left;
-    
-    z-index: 1000;
+
     position: relative;
     flex-direction: column;
-    margin-bottom: 10px;
+    
 }
 
 

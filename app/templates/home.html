@@ -9,14 +9,15 @@
     <link rel="stylesheet" href="{% static 'css/home.css' %}" />
     <script>
       function showPopup() {
-        const overlay = document.getElementById("overlay");
+        const overlay = document.getElementById("over");
         overlay.style.display = "flex";
       }
     
       function hidePopup() {
-        const overlay = document.getElementById("overlay");
+        const overlay = document.getElementById("over");
         overlay.style.display = "none";
       }
+    
     
       function myFunction() {
         document.getElementById("myDropdown").classList.toggle("show");
@@ -41,69 +42,58 @@
         
         <div class="create-post">
           <div class="user-img">
-      
-             <img src="{{ userprofile.profile_image.url }}" alt="" />         
+            <img src="{{ userprofile.profile_image.url }}" alt="" />
           </div>
-          <button class="text-button" onclick="togglePopup()">
+          <button class="text-button" onclick="showPopup()">
             Start a thread ....
           </button>
-            
-          
           <button class="post">Post</button>
-
-          <div class="overlay" id="overlay">
+        
+          <div class="overlay" id="over">
             <form
               method="post"
               action="{% url 'create_post' %}"
               enctype="multipart/form-data"
+              onclick="event.stopPropagation();"
             >
               {% csrf_token %}
-          
-                <div class="pt-rig">
-                    <div class="pt-1">
-                        <div class="h5">{{ user.username }}</div>
-                        <button class="close" onclick="hidePopup()">Close</button>
-                    </div>
-                  <div class="pt-content">
-                    <textarea
-                      name="content"
-                      placeholder="Start a thread ..."
-                    ></textarea>
-
-                    <div class="pt-icons">
-                      <label for="id_image" class="icon-button">
-                        <img
-                          src="{% static 'imgs/images-solid.svg' %}"
-                          alt=""
-                        />
-                        <input
-                          type="file"
-                          name="image"
-                          id="id_image"
-                          accept="image/*"
-                        />
-                      </label>
-                      <label for="id_video" class="icon-button">
-                        <img src="{% static 'imgs/video-solid.svg' %}" alt="" />
-                        <input
-                          type="file"
-                          name="video"
-                          id="id_video"
-                          accept="video/*"
-                          placeholder="choose video file"
-                      
-                       </label>
-                  
-                    </div>
+              <div class="pt-rig">
+                <div class="pt-1">
+                  <div class="h5">{{ user.username }}</div>
+                  <button class="close" onclick="hidePopup()">Close</button>
+                </div>
+                <div class="pt-content">
+                  <textarea name="content" placeholder="Start a thread ..."></textarea>
+                  <div class="pt-icons">
+                    <label for="id_image" class="icon-button">
+                      <img src="{% static 'imgs/images-solid.svg' %}" alt="" />
+                      <input
+                        type="file"
+                        name="image"
+                        id="id_image"
+                        accept="image/*"
+                      />
+                    </label>
+                    <label for="id_video" class="icon-button">
+                      <img src="{% static 'imgs/video-solid.svg' %}" alt="" />
+                      <input
+                        type="file"
+                        name="video"
+                        id="id_video"
+                        accept="video/*"
+                        placeholder="choose video file"
+                      />
+                    </label>
                   </div>
-
-                  <div class="pt-bot">
-                    <button type="submit" class="pt-button">Post</button>
-                  </div>
+                </div>
+                <div class="pt-bot">
+                  <button type="submit" class="pt-button">Post</button>
+                </div>
               </div>
             </form>
           </div>
         </div>
+        
 
         
 

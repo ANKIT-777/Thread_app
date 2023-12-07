@@ -17,8 +17,8 @@ urlpatterns = [
         
         path('edit_profile/', edit_profile, name='edit_profile'),
         path('user_view/<int:user_id>/', user_view, name = 'user_view'),
-        path('user_follow/<int:user_id>/', user_follow, name='user_follow'),
-        path('unfollow/<int:user_id>/', user_unfollow, name='unfollow'),
+        path('follow/<int:user_id>/', follow_user, name='follow'),
+
 
 
         

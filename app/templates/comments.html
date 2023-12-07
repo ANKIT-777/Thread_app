@@ -21,7 +21,11 @@
 <div id="PostComment" class="Post-Comment">
     <div class="c-top">
         <img src="{% if postuser.profile_image.url %}{{ postuser.profile_image.url }}{% else %}{{ userprofile.profile_image.url }}{% endif %}" alt="" />
+        
+        <div class="c-top-text">
         <h4>{{ comment.user.username  }}</h4>
+        <h4>{{ comment.created_at  }}</h4>
+        </div>
     </div>
     
     <div class="c-bot">

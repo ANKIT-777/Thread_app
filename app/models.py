@@ -25,6 +25,8 @@ class UserProfile(models.Model):
     instagram_url = models.URLField(blank=True)
     profile_image = models.ImageField(upload_to='profile_images/', blank=True, null=True)
     followers = models.ManyToManyField(User, related_name='following', blank=True)
+    following = models.ManyToManyField(User, related_name='followers', symmetrical=False, blank=True)
+
 
 
         
