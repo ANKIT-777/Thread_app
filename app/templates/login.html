@@ -10,13 +10,27 @@
   </head>
 
   <body>
+
+    
     <div class="img-div"></div>
 
     <div class="mid-sec">
+      {% if messages %}
+        <div class="m-box">
+                
+                {% for message in messages %}
+                  <h5>{{ message }}</h5>
+                {% endfor %}
+            
+          </div>
+          {% endif %}
+      
+
       <div class="auth-box">
         
         <div class="top-text">Log in with your Instagram account</div>
 
+      
         <form method="post" action="{% url 'login' %}">
           {% csrf_token %}
           <input
@@ -25,17 +39,7 @@
             name="username"
             placeholder="Username, email, or phone"
           />
-          {% if messages %}
-            <ul class="messages">
-                
-                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}></li>
-                {% for message in messages %}
-                  <h6 style= "color: red; position : absolute; left : 150px;">{{ message }}</h6>
-                {% endfor %}
-            </ul>
-          {% endif %}
-
-          
+                    
           <input id="input-box" 
           type="password" 
           name="password" 

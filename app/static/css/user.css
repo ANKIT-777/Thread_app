@@ -8,6 +8,21 @@
     
 }
 
+.video-div{
+    position: fixed;
+    width: 100%;
+    height: 100vh ;
+    z-index: -10;
+}
+
+.video-div video{
+    width: 100%;
+    height: 100vh ;
+    object-fit: cover;
+
+}
+
+
 
 .nav{
     display: grid;
@@ -362,6 +377,143 @@
     margin-top: 20px;
     color: white;
     font-size: 15px;
+}
+
+
+
+.overlay {
+    display: none;
+    position: absolute;
+    height: 35vh;
+    width: 50vw;
+    justify-content: center;
+    z-index: 3; 
+    backdrop-filter: blur(3px);
+    background-color: rgb(255, 255, 255); 
+    top: 22vh;
+    left: 20vw;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.574);
+
+}
+.overlay form{
+    width: 100%;
+    height: 100%;
+}
+
+.pop-top{
+    position: relative;
+    height: 100%;
+    width: 100%;
+    display: flex;
+}
+
+.pt-left{
+    display: flex;
+    width: 10%;
+    
+    justify-content: center;
+}
+
+.pt-left img{
+    height: 45px;
+    width: 45px;
+    border-radius: 45px;
+}
+.pt-rig{
+    display: flex;
+    padding-left: 10px;
+
+    flex-direction: column;
+    
+}
+.pt-1{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 20%;
+    position: relative;
+}
+
+.close{
+    background-color: rgb(157, 157, 157);
+    border-radius: 20px;
+    display: flex;
+    padding-left: 10px;
+    font-size: 10px;
+    align-items: center;
+    
+    border: none;
+    color: white;
+    height: 3vh;
+    width: 40px;
+}
+
+.pt-content{
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    height: 20vh;
+    justify-content: space-evenly;
+}
+
+.pt-content textarea{
+    background-color: white;
+    border: none;
+    margin-top: 5px;
+    min-height: 4vh;
+    resize: vertical; 
+    width: 100%; 
+    margin-bottom: 10px;
+}
+
+
+.pt-icons{
+    height: 40%;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.icon-button{
+    border: none;
+    display: flex;
+    height: 20px;
+    align-items: center;
+    background-color: white;
+    margin: 5px 0;
+}
+
+.pt-icons img{
+    height: 15px;
+    margin: 0 2px;
+}
+.pt-icons input{
+    height: 25px;
+    margin: 5px 2px;
+    width: 50%;
+}
+
+.pt-bot{
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+.pt-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 70px;
+    height: 30px;
+    border: none;
+    background-color: rgb(76, 76, 76);
+    border-radius: 50px;
+    color: white;
+    font-weight: bold;
+    font-size: 13px;
 }
 
 

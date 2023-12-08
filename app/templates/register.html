@@ -14,7 +14,21 @@
     <div class="img-div">
     </div>
 
+    
+
     <div class="mid-sec">
+
+        {% if messages %}
+        <div class="m-box">
+                
+                {% for message in messages %}
+                  <h5>{{ message }}</h5>
+                {% endfor %}
+            
+          </div>
+          {% endif %}
+
+          
         <div class="auth-box">
             <div class="top-text">
                 Register yourself!!

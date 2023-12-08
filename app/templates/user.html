@@ -14,6 +14,13 @@
       function editProfile() {
         document.getElementById("editprofile").classList.toggle("view");
       }
+
+      function togglePopup() {
+        const overlay = document.getElementById("overlay");
+        overlay.style.display =
+          overlay.style.display === "none" ? "flex" : "none";
+      }
+
     </script>
   </head>
 
