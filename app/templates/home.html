@@ -28,7 +28,7 @@
   <body>
     {% include 'navbar.html' %}
     <div class="video-div">
-      {% comment %} <video id="myVideo" src="{% static 'imgs/backglobe.mp4' %}" autoplay muted loop></video> {% endcomment %}
+      <video id="myVideo" src="{% static 'imgs/backglobe.mp4' %}" autoplay muted loop></video>
   </div>
   
   </div>
@@ -41,9 +41,20 @@
         
         
         <div class="create-post">
+          
           <div class="user-img">
+            <a href="{% url 'user_view' userprofile.user.id %}">
+
+              {% if userprofile.profile_image %}
             <img src="{{ userprofile.profile_image.url }}" alt="" />
+
+            {% else %}
+                <img src="{% static 'imgs/avatar.png' %}" alt="Default Profile Image">
+            {% endif %}
+          </a>
           </div>
+
+        
           <button class="text-button" onclick="showPopup()">
             Start a thread ....
           </button>
@@ -58,6 +69,14 @@
             >
               {% csrf_token %}
               <div class="pt-rig">
+                <div class="pt-1">
+                  {% if userprofile.profile_image %}
+                  <img src="{{ userprofile.profile_image.url }}" alt="" />
+      
+                  {% else %}
+                      <img src="{% static 'imgs/avatar.png' %}" alt="Default Profile Image">
+                  {% endif %}
+              </div>
                 <div class="pt-1">
                   <div class="h5">{{ user.username }}</div>
                   <button class="close" onclick="hidePopup()">Close</button>
@@ -98,13 +117,12 @@
         
 
         {% for post in posts|slice:"::-1" %}
-            <a href="{% url 'thread' post.id %}" style="text-decoration: none;">
-                {% with postuser=post.user.userprofile %}  
-                    {% include 'thread.html' with post=post postuser=postuser %}
-                {% endwith %}
-            </a>
-        {% endfor %}
-
+    <a href="{% url 'thread' post.id %}" style="text-decoration: none;">
+        {% with postuser=post.user.userprofile %}  
+            {% include 'thread.html' with post=post postuser=postuser post_id=post.id %}
+        {% endwith %}
+    </a>
+{% endfor %}
 
         
 

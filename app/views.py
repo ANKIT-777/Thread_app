@@ -81,27 +81,6 @@ def user_profile(request):
         return render(request, 'login.html')
 
  
-@login_required
-def edit_profile(request):
-    if request.method == 'POST':
-        form = UserProfileForm(request.POST, request.FILES)
-        if form.is_valid():
-            userprofile, created = UserProfile.objects.get_or_create(user=request.user)
-            userprofile.name = form.cleaned_data['name']
-            userprofile.bio = form.cleaned_data['bio']
-            userprofile.instagram_url = form.cleaned_data['instagram_url']
-            userprofile.profile_image = form.cleaned_data['profile_image']
-            userprofile.save()
-            
-            return redirect(reverse('user_profile'))
-
-    else:
-        form = UserProfileForm()
-
-    userinfo = UserProfile.objects.filter(user=request.user)
-    context = {'userinfo': userinfo, 'form': form}
-    return render(request, 'user.html', context)
-
 
 
 
@@ -205,12 +184,22 @@ def user_view(request,user_id):
     return render(request, 'user_template.html', context)
 
 
-@login_required 
+@login_required
 def like_post(request, post_id):
+    logged_user = request.user
     post = Post.objects.get(id=post_id)
-    post.likes_count += 1
+
+    if logged_user in post.liked_by.all():
+
+        post.likes_count -= 1
+        post.liked_by.remove(logged_user)
+    else:
+
+        post.likes_count += 1
+        post.liked_by.add(logged_user)
+
     post.save()
-    return redirect('home_page')
+    return redirect(reverse('home_page'))
 
 
 def follow_user(request, user_id):
@@ -234,3 +223,47 @@ def follow_user(request, user_id):
     return redirect('user_view', user_id=user_id)
 
 
+
+@login_required
+def delete_post(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+    post.delete()
+    return redirect(reverse('home_page'))
+
+
+def edit_post(request,edit_post):
+    if request.method == "POST":
+        form = Post(request.POST,request.FILES)
+        if form.is_valid():
+            thread, created = Post.objects.get_or_create(user=request.user)
+            thread.content = thread.cleaned_data['content']
+            thread.image = thread.cleaned_data['image']
+            thread.video = thread.cleaned_data['video']
+            thread.save()
+            return redirect(reverse('home_page'))
+            
+    return redirect('home_page')        
+    
+    
+@login_required
+def edit_profile(request):
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            userprofile, created = UserProfile.objects.get_or_create(user=request.user)
+            userprofile.name = form.cleaned_data['name']
+            userprofile.bio = form.cleaned_data['bio']
+            userprofile.instagram_url = form.cleaned_data['instagram_url']
+            userprofile.profile_image = form.cleaned_data['profile_image']
+            userprofile.save()
+            
+            return redirect(reverse('user_profile'))
+
+    else:
+        form = UserProfileForm()
+
+    userinfo = UserProfile.objects.filter(user=request.user)
+    context = {'userinfo': userinfo, 'form': form}
+    return render(request, 'user.html', context)
+
+    

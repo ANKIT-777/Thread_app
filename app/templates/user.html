@@ -8,17 +8,24 @@
     <title>Document</title>
     <link rel="stylesheet" href="{% static 'css/user.css'%}" />
     <script>
-      function myFunction1() {
-        document.getElementById("myDropdown2").classList.toggle("show");
-      }
+
       function editProfile() {
         document.getElementById("editprofile").classList.toggle("view");
       }
 
-      function togglePopup() {
-        const overlay = document.getElementById("overlay");
-        overlay.style.display =
-          overlay.style.display === "none" ? "flex" : "none";
+      function showPopup() {
+        const overlay = document.getElementById("over");
+        overlay.style.display = "flex";
+      }
+    
+      function hidePopup() {
+        const overlay = document.getElementById("over");
+        overlay.style.display = "none";
+      }
+    
+    
+      function myFunction() {
+        document.getElementById("myDropdown").classList.toggle("show");
       }
 
     </script>
@@ -50,7 +57,7 @@
               <div class="followers">
                 <img src="{% static "imgs/ig-logo-135.png" %}" alt="">
 
-                <h5>554</h5>
+                <h5>{{userprofile.followers.count }}</h5>
                 <h5>followers</h5>
               </div>
             </div>
@@ -61,7 +68,7 @@
                 <img src="{{ userprofile.profile_image.url }}" alt="Profile Image">
             {% else %}
                 <!-- Provide a default image or leave it empty if you don't want to show anything -->
-                <img src="{% static 'imgs/Ankit1.jpg' %}" alt="Default Profile Image">
+                <img src="{% static 'imgs/avatar.png' %}" alt="Default Profile Image">
             {% endif %}
         
 

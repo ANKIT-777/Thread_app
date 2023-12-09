@@ -1,4 +1,5 @@
 {% load static %}
+{% load humanize %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,12 +24,12 @@
         <img src="{% if commentuser.profile_image %}
                         {{ commentuser.profile_image.url }}
                     {% else %}
-                        {  }
+                    {% static 'imgs/avatar.png' %}
                     {% endif %}" alt="" />
         
         <div class="c-top-text">
         <h4>{{ comment.user.username  }}</h4>
-        <h4>{{ comment.created_at  }}</h4>
+        <h4>{{ comment.created_at |naturaltime  }}</h4>
         </div>
     </div>
     

@@ -7,21 +7,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>thread</title>
     <link rel="stylesheet" href="{% static 'css/home.css'%}" />
-    <script>
+    {% comment %} <script>
       document.addEventListener("DOMContentLoaded", function() {
-        function toggleComment() {
-          const overlay = document.getElementById("PostComment");
-          overlay.style.display = overlay.style.display === "flex" ? "none" : "flex";
-        }
-    
-        function myDrop() {
-          document.getElementById("t_more").classList.toggle("drop");
-        }
-    
+        
+        function toggleOptions() {
+          var options = document.getElementById("options");
+          options.style.display = options.style.display === "block" ? "none" : "block";
+        }    
+    </script> {% endcomment %}
 
-        document.getElementById("ellipsis").addEventListener("click", myDrop);
-      });
-    
+    <script>
+      function toggleComment() {
+        const overlay = document.getElementById("PostComment");
+        overlay.style.display = overlay.style.display === "flex" ? "none" : "flex";
+      }
+  
+      function toggleOptions(postId) {
+        var options = document.getElementById("options_" + postId);
+        options.style.display = options.style.display === "flex" ? "none" : "flex";
+      }
+
+      function showEditForm() {
+        var editForm = document.getElementById('editForm');
+        editForm.style.display = (editForm.style.display === 'none' || editForm.style.display === '') ? 'block' : 'none';
+    }
+
     </script>
   </head>
   <body>
@@ -37,7 +47,7 @@
           {% elif userprofile.profile_image %}
                   {{ userprofile.profile_image.url }}
               {% else %}
-                  {% static 'imgs/default-profile-image.png' %}
+                  {% static 'imgs/avatar.png' %}
               {% endif %}"
 
               alt=""
@@ -53,8 +63,61 @@
         <div class="t-drop">
           <h6>{{ post.created_at|naturaltime }}</h6>
 
-            <img src="{% static 'imgs/icons8-ellipsis-50.png' %}" alt="" style="width: 25px" />
-          
+          <div class="more" onclick="toggleOptions({{ post.id }})">
+            <img src="{% static 'imgs/icons8-ellipsis-50.png' %}" alt="" style="width: 25px">
+            <div class="options" id="options_{{ post.id }}">
+              <div href="" onclick="showEditForm()">Edit</div>
+
+
+                {% comment %} <Form href="{% url 'edit_post' post.id %}">
+                  {% csrf_token %}
+
+                  
+                </Form> {% endcomment %}
+
+                <div class="edit-post" id="editForm" style="display: none;">
+                  <form method="post" action="{% url 'edit_post' post.id %}" enctype="multipart/form-data">
+
+                  <div class="edit-top">
+                      <h4>username</h4>
+                  </div>
+                  <div class="pt-content">
+                      <textarea name="content" placeholder="Start a thread ..."></textarea>
+                      <div class="pt-icons">
+                          <label for="id_image" class="icon-button">
+                              <img src="{% static 'imgs/images-solid.svg' %}" alt="" />
+                              <input
+                                  type="file"
+                                  name="image"
+                                  id="id_image"
+                                  accept="image/*"
+                              />
+                          </label>
+                          <label for="id_video" class="icon-button">
+                              <img src="{% static 'imgs/video-solid.svg' %}" alt="" />
+                              <input
+                                  type="file"
+                                  name="video"
+                                  id="id_video"
+                                  accept="video/*"
+                                  placeholder="choose video file"
+                              />
+                          </label>
+                      </div>
+                  </div>
+                  <div class="pt-bot">
+                    <button type="submit" class="pt-button">Save Changes</button>
+                  </form>
+                  
+                  </div>
+              </div>
+              
+    
+                <a href="{% url 'delete_post' post.id %}">Delete</a>
+            </div>
+        </div>
+        
+        
         </div>
     
         </div>
@@ -112,7 +175,8 @@
                   src="{% if request.user.userprofile.profile_image %}
                   {{ request.user.userprofile.profile_image.url }}
                   {% else %}
-                  {% static 'imgs/default-profile-image.png' %}
+                  {% static 'imgs/avatar.png' %}
+                  
                 {% endif %}"
                   alt="" />
                   <textarea

@@ -7,18 +7,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>thread</title>
     <link rel="stylesheet" href="{% static 'css/profile.css'%}" />
+    <script>
+
+      function editProfile() {
+        document.getElementById("editprofile").classList.toggle("view");
+      }
+
+      function showPopup() {
+        const overlay = document.getElementById("over");
+        overlay.style.display = "flex";
+      }
+    
+      function hidePopup() {
+        const overlay = document.getElementById("over");
+        overlay.style.display = "none";
+      }
+    
+    
+      function myFunction() {
+        document.getElementById("myDropdown").classList.toggle("show");
+      }
+
+    </script>
   </head>
   <body>
 
     {% include 'navbar.html' %}
 
     <div class="video-div">
-      {% comment %} <video
+       <video
         src="{% static 'imgs/backglobe.mp4' %}"
         autoplay
         muted
         loop
-      ></video> {% endcomment %}
+      ></video> 
     </div>
 
     <div class="page">
@@ -49,14 +71,15 @@
                 {% if userprofile.profile_image %}
                 <img
                   src="{{ userprofile.profile_image.url }}"
+
+                  
                   alt="Profile Image"
                 />
                 {% else %}
-                <img
-                  src="{% static 'imgs/Ankit1.jpg' %}"
-                  alt="Default Profile Image"
-                />
+                <img src="{% static 'imgs/avatar.png' %}" alt="Default Profile Image">
                 {% endif %}
+
+                
               </div>
               <div class="insta-icon"></div>
             </div>
